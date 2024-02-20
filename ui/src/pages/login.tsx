@@ -1,5 +1,6 @@
 import React from 'react';
 import { useContext, useState } from 'react';
+import { Button } from '@mui/material';
 
 import type UserInfo from '../types/userInfo';
 import { CurrentUserContext } from '../contexts/UserContext';
@@ -27,9 +28,14 @@ const Login: React.FC = () => {
     }
     return (
         <div>
-            <button onClick={() => setShowLoginIn(!showLoginIn)}>
-                { showLoginIn ? "Sign Up" : "Login" }
-            </button>
+            <div className="flex justify-center">            
+                <Button color="primary" variant="contained" sx={{borderRadius: 0, }} disabled={!showLoginIn} onClick={() => {setShowLoginIn(false)}}>
+                    Sign Up
+                </Button>
+                <Button color="success" variant="contained" sx={{borderRadius: 0,}} disabled={showLoginIn} onClick={() => {setShowLoginIn(true)}}>
+                    Log In
+                </Button>
+            </div>
             { showLoginIn ? 
             <div>
                 <h1>Login</h1>
