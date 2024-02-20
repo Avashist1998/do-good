@@ -9,15 +9,15 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-22.04
+    defaults:
+      run:
+        working-directory: ./ui
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
       - name: Setup Node
         uses: actions/setup-node@v3
-
-      - name: set working directory
-        run: cd ./ui
 
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
