@@ -1,35 +1,58 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Route, Routes, HashRouter, Navigate } from 'react-router-dom'
+import { useEffect, useState } from "react";
 
-function App() {
-  const [count, setCount] = useState(0)
+import type UserInfo from "./types/userInfo";
+import Home from "./pages/home";
+import Login from './pages/login';
+import './App.css'
+import { CurrentUserContext } from './contexts/UserContext';
+
+
+const App = () => {
+
+
+  const [userData, setUserData] = useState<UserInfo | null>(
+    JSON.parse(sessionStorage.getItem("userData") || "null")
+  );
+
+  // useEffect(() => {
+  //   setUserData({username: "test", role: "admin", token: "test"} as UserInfo);
+  // }, [userData]);
+
+  interface ProtectedRouteProps {
+    Element: React.FC;
+    userData: UserInfo | null;
+    isAdmin?: boolean;
+    postLogin?: boolean;
+  }
+
+  const ProtectedRoute: React.FC<ProtectedRouteProps> = ({Element, userData, isAdmin, postLogin }) => {
+    if (postLogin !== undefined && postLogin === true) {
+      if (userData !== null) {
+        return <Navigate to="/" replace />;
+      }
+      return <Element/>;
+    } else {
+      const isAdminUser = isAdmin || false;
+      if (userData === null || (isAdminUser && userData.role !== "admin")) {
+        return <Navigate to="/login" replace />;
+      }
+      return <Element/>;
+    }
+  };
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <CurrentUserContext.Provider value={{userData, setUserData}}>
+      <HashRouter>
+        <Routes>
+          <Route path="/" element={<ProtectedRoute Element={Home} userData={userData}/>} />
+          <Route path="/login" element={<ProtectedRoute Element={Login} userData={userData} postLogin={true}/>}/>
+        </Routes>
+      </HashRouter>
+    </CurrentUserContext.Provider>
     </>
   )
 }
 
-export default App
+export default App;
