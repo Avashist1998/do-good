@@ -16,6 +16,9 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
 
+      - name: set working directory
+        run: cd ./ui
+
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
 
