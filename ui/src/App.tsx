@@ -1,5 +1,5 @@
 import { Route, Routes, HashRouter, Navigate } from 'react-router-dom'
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import type UserInfo from "./types/userInfo";
 import Home from "./pages/home";
@@ -14,10 +14,6 @@ const App = () => {
   const [userData, setUserData] = useState<UserInfo | null>(
     JSON.parse(sessionStorage.getItem("userData") || "null")
   );
-
-  // useEffect(() => {
-  //   setUserData({username: "test", role: "admin", token: "test"} as UserInfo);
-  // }, [userData]);
 
   interface ProtectedRouteProps {
     Element: React.FC;
