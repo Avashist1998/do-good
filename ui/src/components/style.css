@@ -1,0 +1,16 @@
+/* styles.css */
+.background {
+    background-color: #fbf9ef;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content {
+    max-width: 400px;
+    padding: 20px;
+    background-color: #c7b090;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}

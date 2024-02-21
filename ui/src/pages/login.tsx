@@ -9,6 +9,7 @@ import UserLogin from '../types/userLogin';
 import SignUpUserForm from '../forms/signUp';
 import UserSignUp from '../types/userSignUp';
 import PageTemplate from './PageTemplate';
+import '../components/login.css'
 
 const Login: React.FC = () => {
     const { setUserData } = useContext(CurrentUserContext);    
@@ -28,11 +29,11 @@ const Login: React.FC = () => {
         setUserData({username: "test", role: "admin", token: "test"} as UserInfo);
     }
     return (
-        <div className='p-[20px]'>
-            <div className="flex justify-center">            
+        <PageTemplate>
+            <div className="flex justify-center">   
                 <Button color="primary" variant="contained" sx={{borderRadius: 0, }} disabled={!showLoginIn} onClick={() => {setShowLoginIn(false)}}>
                     Sign Up
-                </Button>
+                </Button> 
                 <Button color="success" variant="contained" sx={{borderRadius: 0,}} disabled={showLoginIn} onClick={() => {setShowLoginIn(true)}}>
                     Log In
                 </Button>
@@ -42,19 +43,19 @@ const Login: React.FC = () => {
                 { showLoginIn ? 
                 <div>
                     <div className="flex justify-center">
-                        <h1 className="text-8xl font-bold m-5 text-center">LogIn</h1>
+                        <h1 className="text-8xl font-bold m-5 text-center"><div className="header">Log In</div></h1>
                     </div>
                     <LogInForm logInUser={login}/>
                 </div> : 
                 <div>
                     <div className="flex justify-center">
-                        <h1 className="text-8xl font-bold m-5 text-center">SignUp</h1>
+                        <h1 className="text-8xl font-bold m-3 text-center"><div className="header">Sign Up</div></h1>
                     </div>
                     <SignUpUserForm submitUser={signUp}/>
                 </div>
                 }
             </div>
-        </div>
+        </PageTemplate>
         )
 }
 

@@ -3,6 +3,7 @@ import { TextField, Button } from "@mui/material";
 
 import PersonAddAltIcon from "@mui/icons-material/PersonAddAlt";
 import type UserLogin from "../types/userLogin";
+import "../components/login.css"
 
 
 const LogInForm = ( props: {
@@ -44,16 +45,22 @@ const LogInForm = ( props: {
     <>
         <div>
             <div className="justify-center flex p-2">
+                <div className="input">
                 <TextField id="creatorEmail" label="Email" value={email} required onChange={e => setEmail(e.target.value)} error={emailError}/>
+                </div>
             </div>
             <div className="justify-center flex p-2">
+                <div className="input">
                 <TextField id="creatorPassword" label="Password" value={password} required onChange={e => setPassword(e.target.value)} type="password" error={passwordError}/>
+                </div>
             </div>
         </div>
         <div className="justify-center flex p-2">
-            <Button startIcon={<PersonAddAltIcon/>} variant="contained" color="success" disabled={!enableSignUpButton} onClick={logInUser}>
+            <div className="button">
+            <Button startIcon={<PersonAddAltIcon/>} variant="contained" color="success" disabled={!enableSignUpButton} onClick={logInUser} >
                 Log In
             </Button>
+            </div>
         </div>
         {props.children}
     </>
