@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import { BottomNavigation, BottomNavigationAction } from '@mui/material';
-import RestoreIcon from '@mui/icons-material/Restore';
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
+import TimelineIcon from '@mui/icons-material/Timeline';
+import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 
 
 const NavigationBar = () => {
@@ -16,9 +16,10 @@ const NavigationBar = () => {
             value={value}
             onChange={(event, newValue) => {
                 setValue(newValue);
+                console.log(event);
             }}>
-            <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
-            <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
+            <BottomNavigationAction label="Home" icon={<TimelineIcon />} />
+            <BottomNavigationAction label="Record" icon={<RadioButtonCheckedIcon />} />
             <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} />
         </BottomNavigation>
     )
