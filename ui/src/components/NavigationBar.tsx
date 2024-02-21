@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import { BottomNavigation, BottomNavigationAction } from '@mui/material';
 import RestoreIcon from '@mui/icons-material/Restore';
@@ -16,6 +16,7 @@ const NavigationBar = () => {
             value={value}
             onChange={(event, newValue) => {
                 setValue(newValue);
+                console.log(event);
             }}>
             <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
             <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
