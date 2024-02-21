@@ -7,23 +7,17 @@ const PageTemplate = (
         children: React.ReactNode
     }
 ) => {
-
+// <div className="p-[50px]">
+{/* <div className="fixed inset-x-0 bottom-0"> */}
+    {/* <NavigationBar/> */}
+{/* </div> */}
 
     return (
-
-        <div>
-            <div className="background">
+        <div className="background">
             <div className="content">
-                    <div className="p-[50px]">
                         {props.children}
                     </div>
-                </div>
-            </div>
-            {/* <div className="fixed inset-x-0 bottom-0"> */}
-                {/* <NavigationBar/> */}
-            {/* </div> */}
         </div>
-
     )
 }
 // #fbfbeb, faded color for  background

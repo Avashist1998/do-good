@@ -4,6 +4,8 @@ type ActivityData = {
     date: string,
     lot: number,
     log: number,
+    points: number
+    duration: number
 }
 
 export default ActivityData;
