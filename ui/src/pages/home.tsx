@@ -1,20 +1,41 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import getLocation from '../api/location';
-
-import LocationData from '../types/location';
 import type ActivityData from '../types/activity';
 import ActivityCard from '../components/ActivityCard';
+
+// import getLocation from '../api/location';
+// import LocationData from '../types/location';
 // import { CurrentUserContext } from '../contexts/UserContext';
 
-import { Button, List, ListItem } from '@mui/material';
+import { List, ListItem } from '@mui/material';
 import LayoutTemplate from './LayoutTemplate';
+import { getActivities } from '../api/activities';
 
 const Home: React.FC = () => {
 
-    const [location, setLocation] = useState<LocationData | null>(null);
+    const navigate = useNavigate();
+    const [activities, setActivities] = useState<ActivityData[]>([]);
+    
     // const { userData } = useContext(CurrentUserContext);
+    // const [location, setLocation] = useState<LocationData | null>(null);
+    
+    useEffect(() => {
+        getActivities().then((res) => {
+            setActivities(res);
+        }).catch((error) => {
+            console.log(error);
+        });
+    }, [activities, setActivities])
+    
+
+    const navigateToActivity = (activityId: string) => {
+        const path = `./${activityId}`;
+        console.log(path);
+        navigate(path);
+
+    }
+
     return (
         <>
             <LayoutTemplate>
@@ -22,8 +43,8 @@ const Home: React.FC = () => {
                     {/* <p>Welcome {userData?.username}</p>
                     <p>Your role is {userData?.role}</p>
                     <p>Your token is {userData?.token}</p> */}
-                    <p>Your location is {location?.lat || ""}, {location?.log || ""}</p>
-                    <div>                
+                    {/* <p>Your location is {location?.lat || ""}, {location?.log || ""}</p> */}
+                    {/* <div>                
                         <Button onClick={() => {
                                 getLocation().then((res) => {
                                     setLocation(res);
@@ -34,24 +55,17 @@ const Home: React.FC = () => {
                             }}>
                             Get Location
                         </Button>
-                    </div>
+                    </div> */}
                 </div>
                 <div className='overflow-auto pb-[50px]'>
                     <div className='text-center'>
                         <div className='justify-center w-full'>
                             <List>
-                                {Array.from({length: 10}, (_, i) => i).map((i) => {
+                                {activities.map((activity, index) => {
                                     return (
-                                        <ListItem key={i}>
+                                        <ListItem key={index}>
                                             <div className="w-full">
-                                                <ActivityCard activity={{
-                                                        title: "Activity " + (i+1),
-                                                        description: "This is the first activity",
-                                                        date: "2021-09-01",
-                                                        points: 10,
-                                                        lot: 1,
-                                                        log: 1
-                                                    } as ActivityData} />
+                                                <ActivityCard activity={activity} navigateToActivity={navigateToActivity} />
                                             </div>
                                         </ListItem>
                                     )
