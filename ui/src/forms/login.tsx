@@ -3,7 +3,6 @@ import { TextField, Button } from "@mui/material";
 
 import PersonAddAltIcon from "@mui/icons-material/PersonAddAlt";
 import type UserLogin from "../types/userLogin";
-import "../components/login.css"
 
 
 const LogInForm = ( props: {
@@ -43,25 +42,28 @@ const LogInForm = ( props: {
     }
     return (
     <>
-        <div>
-            <div className="justify-center flex p-2">
-                <div className="input">
-                <TextField id="creatorEmail" label="Email" value={email} required onChange={e => setEmail(e.target.value)} error={emailError}/>
+        <div className="flex flex-col items-center mt-8">
+            <div className="w-full md:w-96 p-4 bg-gray-100 rounded-lg shadow-lg">
+                <div className="mb-4">
+                    <TextField id="creatorEmail" label="Email" value={email} required onChange={e => setEmail(e.target.value)} error={emailError} fullWidth/>
                 </div>
-            </div>
-            <div className="justify-center flex p-2">
-                <div className="input">
-                <TextField id="creatorPassword" label="Password" value={password} required onChange={e => setPassword(e.target.value)} type="password" error={passwordError}/>
+                <div className="mb-4">
+                    <TextField id="creatorPassword" label="Password" value={password} required onChange={e => setPassword(e.target.value)} type="password" error={passwordError} fullWidth/>
                 </div>
             </div>
         </div>
-        <div className="justify-center flex p-2">
-            <div className="button">
-            <Button startIcon={<PersonAddAltIcon/>} variant="contained" color="success" disabled={!enableSignUpButton} onClick={logInUser} >
-                Log In
-            </Button>
+
+        <div className="justify-center flex p-2 mt-8">
+            <div className="p-4 border border-solid rounded cursor-pointer transition duration-300 bg-green-900">
+                <div className="bg-green-900 text-white">
+                    <Button variant="contained" color="success" disabled={!enableSignUpButton} onClick={logInUser}>
+                        Log In
+                    </Button>
+                </div>
             </div>
         </div>
+
+
         {props.children}
     </>
     )
