@@ -10,7 +10,7 @@ import SignUpUserForm from '../forms/signUp';
 import UserSignUp from '../types/userSignUp';
 import PageTemplate from './PageTemplate';
 
-const Login: React.FC = () => {
+const LoginPage: React.FC = () => {
     const { setUserData } = useContext(CurrentUserContext);    
     const [showLoginIn, setShowLoginIn] = useState<boolean>(true)
 
@@ -65,4 +65,4 @@ const Login: React.FC = () => {
 }
 
 
-export default Login;
+export default LoginPage;

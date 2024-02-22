@@ -32,7 +32,7 @@ const TopAppBar = () => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Home
+              Do Good
           </Typography>
           <Button color="inherit" onClick={logOutUser}>LogOut</Button>
         </Toolbar>

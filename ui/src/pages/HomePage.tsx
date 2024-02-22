@@ -12,7 +12,7 @@ import { List, ListItem } from '@mui/material';
 import LayoutTemplate from './LayoutTemplate';
 import { getActivities } from '../api/activities';
 
-const Home: React.FC = () => {
+const HomePage: React.FC = () => {
 
     const navigate = useNavigate();
     const [activities, setActivities] = useState<ActivityData[]>([]);
@@ -26,7 +26,7 @@ const Home: React.FC = () => {
         }).catch((error) => {
             console.log(error);
         });
-    }, [activities, setActivities])
+    },[])
     
 
     const navigateToActivity = (activityId: string) => {
@@ -80,4 +80,4 @@ const Home: React.FC = () => {
     )
 }
 
-export default Home;
+export default HomePage;
