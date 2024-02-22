@@ -6,6 +6,7 @@ import Home from "./pages/home";
 import Login from './pages/login';
 import './App.css'
 import { CurrentUserContext } from './contexts/UserContext';
+import ActivityPage from './pages/Activites';
 
 
 const App = () => {
@@ -43,6 +44,7 @@ const App = () => {
       <HashRouter>
         <Routes>
           <Route path="/" element={<ProtectedRoute Element={Home} userData={userData}/>} />
+          <Route path="/:activityId" element={<ProtectedRoute Element={ActivityPage} userData={userData}/>} />
           <Route path="/login" element={<ProtectedRoute Element={Login} userData={userData} postLogin={true}/>}/>
         </Routes>
       </HashRouter>

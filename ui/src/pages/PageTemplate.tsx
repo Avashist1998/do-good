@@ -1,5 +1,4 @@
 import React from 'react';
-import '../components/style.css';
 // import NavigationBar from '../components/NavigationBar';
 
 const PageTemplate = (
@@ -13,10 +12,12 @@ const PageTemplate = (
 {/* </div> */}
 
     return (
-        <div className="background">
-            <div className="content">
-                        {props.children}
-                    </div>
+        <div className="background bg-amber-100 min-h-screen w-95 mx-auto">
+            <div className="flex justify-center items-center"> {/* removed h-screen from this line, takes away activiites */}
+                <div className="content w-full bg-pink-400 bg-opacity-50 shadow-md p-8">
+                    {props.children}
+                </div>
+            </div>
         </div>
     )
 }

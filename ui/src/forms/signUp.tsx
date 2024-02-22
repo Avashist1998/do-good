@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
 import { TextField, Button } from "@mui/material";
 
-import PersonAddAltIcon from "@mui/icons-material/PersonAddAlt";
+//import PersonAddAltIcon from "@mui/icons-material/PersonAddAlt";
 import type UserSignUp from "../types/userSignUp";
-import "../components/login.css"
 
 const SignUpUserForm = ( props: {
     submitUser : (user: UserSignUp) => void,
@@ -52,27 +51,27 @@ const SignUpUserForm = ( props: {
     return (
     <>
         <div>
-            <div className="justify-center flex p-2">
-            <div className="input">
-                <TextField id="eventName" label="Name" value={name} required onChange={e => setName(e.target.value)} error={nameError}/>
-                </div>
-            </div>
-            <div className="justify-center flex p-2">
-                <div className="input">
-                <TextField id="creatorEmail" label="Email" value={email} required onChange={e => setEmail(e.target.value)} error={emailError}/>
-                </div>
-            </div>
-            <div className="justify-center flex p-2">
-                <div className="input">
-                <TextField id="creatorPassword" label="Password" value={password} required onChange={e => setPassword(e.target.value)} type="password" error={passwordError}/>
+            <div className="flex flex-col items-center mt-8">
+                <div className="w-full md:w-96 p-4 bg-gray-100 rounded-lg shadow-lg">
+                    <div className="mb-4">
+                        <TextField id="eventName" label="Name" value={name} required onChange={e => setName(e.target.value)} error={nameError}/>
+                    </div>
+                    <div className="mb-4">
+                        <TextField id="creatorEmail" label="Email" value={email} required onChange={e => setEmail(e.target.value)} error={emailError}/>
+                    </div>
+                    <div className="mb-4">
+                        <TextField id="creatorPassword" label="Password" value={password} required onChange={e => setPassword(e.target.value)} type="password" error={passwordError}/>
+                    </div>
                 </div>
             </div>
         </div>
-        <div className="justify-center flex p-2">
-            <div className="button">
-            <Button startIcon={<PersonAddAltIcon/>} variant="contained" color="success" disabled={!enableSignUpButton} onClick={signUpUser}>
-                Sign Up
-            </Button>
+        <div className="justify-center flex p-2 mt-8">
+            <div className="p-4 border border-solid rounded cursor-pointer transition duration-300 bg-green-900">
+                <div className="bg-green-900 text-white">
+                    <Button variant="contained" color="success" disabled={!enableSignUpButton} onClick={signUpUser}>
+                        Sign Up
+                    </Button>
+                </div>
             </div>
         </div>
         {props.children}

@@ -1,0 +1,21 @@
+owner_id,description,member_count,website,tags,void
+RELATION_RECORD_ID1,Clean Earth Foundation,20,https://cleanearthfoundation.org,["cleaning", "earth"],false
+RELATION_RECORD_ID2,Water Saviors Alliance,25,https://watersaviors.org,["saving", "water"],false
+RELATION_RECORD_ID3,EcoGuardians Network,30,https://ecoguardians.net,["environment", "conservation"],false
+RELATION_RECORD_ID4,Green Horizon Coalition,15,https://greenhorizoncoalition.org,["green", "earth"],false
+RELATION_RECORD_ID5,Blue Wave Initiative,30,https://bluewaveinitiative.org,["water", "sustainability"],false
+RELATION_RECORD_ID6,Sustainable Earth Society,30,https://sustainableearth.org,["sustainability", "earth"],false
+RELATION_RECORD_ID7,ClearWater Foundation,10,https://clearwaterfoundation.org,["clean", "water"],false
+RELATION_RECORD_ID8,Planet Protectors Coalition,30,https://planetprotectors.org,["planet", "protection"],false
+RELATION_RECORD_ID9,Earth Harmony Project,30,https://earthharmonyproject.org,["harmony", "earth"],false
+RELATION_RECORD_ID10,WaterGuard Initiative,30,https://waterguardinitiative.org,["guarding", "water"],false
+RELATION_RECORD_ID11,World Wildlife Fund,30,https://worldwildlife.org,["wildlife", "conservation"],false
+RELATION_RECORD_ID12,Greenpeace International,30,https://greenpeace.org,["environment", "activism"],false
+RELATION_RECORD_ID13,The Ocean Cleanup,20,https://theoceancleanup.com,["ocean", "cleanup"],false
+RELATION_RECORD_ID14,Sierra Club,30,https://sierraclub.org,["environment", "advocacy"],false
+RELATION_RECORD_ID15,Water.org,30,https://water.org,["water", "access"],false
+RELATION_RECORD_ID16,Nature Conservancy,25,https://nature.org,["nature", "preservation"],false
+RELATION_RECORD_ID17,Save the Children,30,https://savethechildren.org,["children", "aid"],false
+RELATION_RECORD_ID18,American Rivers,30,https://americanrivers.org,["rivers", "protection"],false
+RELATION_RECORD_ID19,UNESCO Water Programme,30,https://en.unesco.org/themes/water-security,["water", "security"],false
+RELATION_RECORD_ID20,Earthjustice,15,https://earthjustice.org,["environmental", "law"],false
