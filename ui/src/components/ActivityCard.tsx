@@ -7,7 +7,6 @@ import IosShareIcon from '@mui/icons-material/IosShare';
 const ActivityCard = (props: {
     activity: ActivityData
 }) => {
-    const name = "Geetanjali Vashist";
     return (
         <>
             <Card>
@@ -16,7 +15,7 @@ const ActivityCard = (props: {
                     <IconButton aria-label="settings">
                         <MoreVertIcon />
                     </IconButton>}
-                    title={name}
+                    title={props.activity.name}
                     subheader={new Date(props.activity.date).toLocaleDateString(undefined, {
                                             year: 'numeric',
                                             month: 'short',
