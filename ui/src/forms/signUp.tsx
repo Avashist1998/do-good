@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
 import { TextField, Button } from "@mui/material";
 
-import PersonAddAltIcon from "@mui/icons-material/PersonAddAlt";
+// import PersonAddAltIcon from "@mui/icons-material/PersonAddAlt";
 import type UserSignUp from "../types/userSignUp";
-import "../components/login.css"
 
 const SignUpUserForm = ( props: {
     submitUser : (user: UserSignUp) => void,
