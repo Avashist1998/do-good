@@ -9,7 +9,6 @@ import UserLogin from '../types/userLogin';
 import SignUpUserForm from '../forms/signUp';
 import UserSignUp from '../types/userSignUp';
 import PageTemplate from './PageTemplate';
-import '../components/login.css'
 
 const Login: React.FC = () => {
     const { setUserData } = useContext(CurrentUserContext);    
