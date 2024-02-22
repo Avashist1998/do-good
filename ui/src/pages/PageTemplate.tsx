@@ -13,7 +13,7 @@ const PageTemplate = (
 
     return (
         <div className="background bg-amber-100 min-h-screen w-95 mx-auto">
-            <div className="flex justify-center items-center h-screen">
+            <div className="flex justify-center items-center"> {/* removed h-screen from this line, takes away activiites */}
                 <div className="content w-full bg-pink-400 bg-opacity-50 shadow-md p-8">
                     {props.children}
                 </div>
