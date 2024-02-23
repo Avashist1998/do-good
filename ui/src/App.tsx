@@ -8,6 +8,7 @@ import { CurrentUserContext } from './contexts/UserContext';
 import HomePage from "./pages/HomePage";
 import LoginPage from './pages/LoginPage';
 import ActivityPage from './pages/ActivityPage';
+import RecordPage from './pages/RecordPage';
 
 
 const App = () => {
@@ -20,36 +21,31 @@ const App = () => {
   interface ProtectedRouteProps {
     Element: React.FC;
     userData: UserInfo | null;
-    isAdmin?: boolean;
-    postLogin?: boolean;
+    isLogin?: boolean;
   }
 
-  const ProtectedRoute: React.FC<ProtectedRouteProps> = ({Element, userData, isAdmin, postLogin }) => {
-    if (postLogin !== undefined && postLogin === true) {
-      if (userData !== null) {
+  const ProtectedRoute: React.FC<ProtectedRouteProps> = ({Element, userData, isLogin }) => {
+    if (userData !== null) {
+      if (isLogin !== undefined || isLogin == true) {
         return <Navigate to="/" replace />;
       }
       return <Element/>;
-    } else {
-      const isAdminUser = isAdmin || false;
-      if (userData === null || (isAdminUser && userData.role !== "admin")) {
-        return <Navigate to="/login" replace />;
-      }
-      return <Element/>;
     }
+    return <Navigate to="/login" replace />;
   };
 
   return (
     <>
-    <CurrentUserContext.Provider value={{userData, setUserData}}>
-      <HashRouter>
-        <Routes>
-          <Route path="/" element={<ProtectedRoute Element={HomePage} userData={userData}/>} />
-          <Route path="/:activityId" element={<ProtectedRoute Element={ActivityPage} userData={userData}/>} />
-          <Route path="/login" element={<ProtectedRoute Element={LoginPage} userData={userData} postLogin={true}/>}/>
-        </Routes>
-      </HashRouter>
-    </CurrentUserContext.Provider>
+      <CurrentUserContext.Provider value={{userData, setUserData}}>
+        <HashRouter>
+          <Routes>
+            <Route path="/record" element={<ProtectedRoute Element={RecordPage} userData={userData}/>} />
+            <Route path="/login" element={<LoginPage/>}/>
+            <Route path="/" element={<ProtectedRoute Element={HomePage} userData={userData}/>} />
+            <Route path="/:activityId" element={<ProtectedRoute Element={ActivityPage} userData={userData}/>}/>
+          </Routes>
+        </HashRouter>
+      </CurrentUserContext.Provider>
     </>
   )
 }
