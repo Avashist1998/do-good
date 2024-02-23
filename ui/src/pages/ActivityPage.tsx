@@ -17,6 +17,7 @@ const ActivityPage: React.FC = () => {
     const [activity, setActivity] = useState<ActivityData | null>(null);
 
     useEffect(() => {
+        console.log("Getting activity");
         const id: string = activityId || "";
         getActivity(id).then((res) => {
             setActivity(res);
@@ -25,7 +26,7 @@ const ActivityPage: React.FC = () => {
         }).finally(() => {
             setLoading(false);
         });
-    }, [activity])
+    }, [])
 
     return (
         <>
@@ -41,7 +42,7 @@ const ActivityPage: React.FC = () => {
                                 :
                                 activity === null ?
                                 <div>
-                                    <h1>Activity not found</h1>
+                                    <h1>404</h1>
                                 </div>
                                 :
                                  <div>
