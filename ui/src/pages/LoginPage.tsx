@@ -9,8 +9,11 @@ import UserLogin from '../types/userLogin';
 import SignUpUserForm from '../forms/signUp';
 import UserSignUp from '../types/userSignUp';
 import PageTemplate from './PageTemplate';
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage: React.FC = () => {
+
+    const navigate = useNavigate();
     const { setUserData } = useContext(CurrentUserContext);    
     const [showLoginIn, setShowLoginIn] = useState<boolean>(true)
 
@@ -19,6 +22,7 @@ const LoginPage: React.FC = () => {
         console.log(user);
         sessionStorage.setItem("userData", JSON.stringify({username: "test", role: "admin", token: "test"}));
         setUserData({username: "test", role: "admin", token: "test"} as UserInfo);
+        navigate("/")
     }
 
     const signUp = (user: UserSignUp) => {
