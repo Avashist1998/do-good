@@ -1,6 +1,6 @@
 import React from 'react';
 import { useContext, useState } from 'react';
-import { Button } from '@mui/material';
+import { Button, Icon } from '@mui/material';
 
 import type UserInfo from '../types/userInfo';
 import { CurrentUserContext } from '../contexts/UserContext';
@@ -10,6 +10,8 @@ import SignUpUserForm from '../forms/signUp';
 import UserSignUp from '../types/userSignUp';
 import PageTemplate from './PageTemplate';
 import { useNavigate } from 'react-router-dom';
+
+import Logo from '/logo.svg';
 
 const LoginPage: React.FC = () => {
 
@@ -64,6 +66,11 @@ const LoginPage: React.FC = () => {
                 <SignUpUserForm submitUser={signUp}/>
             </div>
                 }
+            </div>
+            <div className="flex justify-center">
+                <Icon sx={{ width: '200px', height: '205px' }} >
+                    <img src={Logo} className='w-full h-full'/>
+                </Icon>
             </div>
             </div>
         </PageTemplate>

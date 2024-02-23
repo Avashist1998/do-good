@@ -51,7 +51,7 @@ const ActivityCard = (props: {
                         <Typography textAlign={"left"} gutterBottom variant="h5" component="div">
                             {props.activity.title}
                         </Typography>
-                        <Typography variant="body2" color="text.secondary">
+                        <Typography textAlign={"left"} variant="body2" color="text.secondary">
                             {props.activity.description}
                         </Typography>
                     </CardContent>
