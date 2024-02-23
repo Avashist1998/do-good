@@ -29,11 +29,12 @@ const LoginPage: React.FC = () => {
     }
     return (
         <PageTemplate>
+            <div className="h-lvh py-16">
             <div className="flex justify-center space-x-4">
-                <Button color="primary" variant="contained" sx={{borderRadius: 0}} disabled={!showLoginIn} onClick={() => {setShowLoginIn(false)}} className="bg-deep-green text-white hover:bg-deep-green-dark">
+                <Button variant="contained" sx={{borderRadius: 0, backgroundColor: 'white', color: 'black' }} disabled={!showLoginIn} onClick={() => {setShowLoginIn(false)}}>
                     Sign Up
                 </Button> 
-                <Button color="success" variant="contained" sx={{borderRadius: 0}} disabled={showLoginIn} onClick={() => {setShowLoginIn(true)}} className="bg-deep-green text-white hover:bg-deep-green-dark">
+                <Button color="primary" variant="contained" sx={{borderRadius: 0,  backgroundColor: 'white', color: 'black' }} disabled={showLoginIn} onClick={() => {setShowLoginIn(true)}}>
                     Log In
                 </Button>
             </div>
@@ -43,7 +44,7 @@ const LoginPage: React.FC = () => {
                 { showLoginIn ? 
                 <div>
                 <div className="flex justify-center">
-                    <h1 className="text-5xl md:text-8xl font-bold m-5 text-center">
+                    <h1 className="text-5xl md:text-8xl font-bold m-5 text-center animate-pulse">
                         <span className="header text-green-950">Log In</span>
                     </h1>
                 </div>
@@ -52,13 +53,14 @@ const LoginPage: React.FC = () => {
             : 
             <div>
                 <div className="flex justify-center">
-                    <h1 className="text-5xl md:text-8xl font-bold m-3 text-center text-green-700">
+                    <h1 className="text-5xl md:text-8xl font-bold m-3 text-center animate-pulse">
                         <span className="header text-green-950">Sign Up</span>
                     </h1>
                 </div>
                 <SignUpUserForm submitUser={signUp}/>
             </div>
                 }
+            </div>
             </div>
         </PageTemplate>
         )

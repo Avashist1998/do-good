@@ -66,13 +66,11 @@ const SignUpUserForm = ( props: {
             </div>
         </div>
         <div className="justify-center flex p-2 mt-8">
-            <div className="p-4 border border-solid rounded cursor-pointer transition duration-300 bg-green-900">
                 <div className="bg-green-900 text-white">
                     <Button variant="contained" color="success" disabled={!enableSignUpButton} onClick={signUpUser}>
                         Sign Up
                     </Button>
                 </div>
-            </div>
         </div>
         {props.children}
     </>
