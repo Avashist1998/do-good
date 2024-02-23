@@ -5,6 +5,7 @@ import { BottomNavigation, BottomNavigationAction } from '@mui/material';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import TimelineIcon from '@mui/icons-material/Timeline';
 import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
+import { green, grey } from '@mui/material/colors';
 
 const NavigationBar = () => {
 
@@ -22,6 +23,13 @@ const NavigationBar = () => {
         return 0;
     }
 
+    const getColor = (index: number) => {
+        if (index === getActiveTab()) {
+            return green[500];
+        }
+        return grey[500];
+    }
+
     const [value, setValue] = useState(getActiveTab());
 
     const navigateTo = (path: string) => {
@@ -33,12 +41,25 @@ const NavigationBar = () => {
             showLabels
             value={value}
             onChange={(_, newValue) => {
-                console.log("This was triggered")
                 setValue(newValue);
-            }}>
-            <BottomNavigationAction label="Home" icon={<TimelineIcon />} onClick={()=>{navigateTo("/")}}/>
-            <BottomNavigationAction label="Record" icon={<RadioButtonCheckedIcon />} onClick={()=>{navigateTo("/record")}}/>
-            <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} onClick={()=>{navigateTo("/nearby")}}/>
+            }}
+        >
+            <BottomNavigationAction label="Home"             sx={{
+                "& .MuiBottomNavigationAction-root, .Mui-selected,": {
+                    color: getColor(0)
+                },
+            }} icon={<TimelineIcon sx={{ color: getColor(0) }} />} onClick={() => { navigateTo("/") }}/>
+            <BottomNavigationAction label="Record"  
+             sx={{ 
+                "& .MuiBottomNavigationAction-root, .Mui-selected,": {
+                    color: getColor(1)
+                },
+            }} icon={<RadioButtonCheckedIcon sx={{ color: getColor(1) }} />} onClick={() => { navigateTo("/record") }}/>
+            <BottomNavigationAction label="Nearby"  sx={{
+                "& .MuiBottomNavigationAction-root, .Mui-selected,": {
+                    color: getColor(2)
+                },
+            }} icon={<LocationOnIcon sx={{ color: getColor(2) }} />} onClick={() => { navigateTo("/nearby") }} />
         </BottomNavigation>
     )
 }
