@@ -1,11 +1,13 @@
 import { Route, Routes, HashRouter, Navigate } from 'react-router-dom'
 import { useState } from "react";
 
-import type UserInfo from "./types/userInfo";
-import Home from "./pages/home";
-import Login from './pages/login';
 import './App.css'
+import type UserInfo from "./types/userInfo";
 import { CurrentUserContext } from './contexts/UserContext';
+
+import HomePage from "./pages/HomePage";
+import LoginPage from './pages/LoginPage';
+import ActivityPage from './pages/ActivityPage';
 
 
 const App = () => {
@@ -42,8 +44,9 @@ const App = () => {
     <CurrentUserContext.Provider value={{userData, setUserData}}>
       <HashRouter>
         <Routes>
-          <Route path="/" element={<ProtectedRoute Element={Home} userData={userData}/>} />
-          <Route path="/login" element={<ProtectedRoute Element={Login} userData={userData} postLogin={true}/>}/>
+          <Route path="/" element={<ProtectedRoute Element={HomePage} userData={userData}/>} />
+          <Route path="/:activityId" element={<ProtectedRoute Element={ActivityPage} userData={userData}/>} />
+          <Route path="/login" element={<ProtectedRoute Element={LoginPage} userData={userData} postLogin={true}/>}/>
         </Routes>
       </HashRouter>
     </CurrentUserContext.Provider>

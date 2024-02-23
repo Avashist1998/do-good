@@ -10,15 +10,16 @@ const NavigationBar = () => {
 
     const [value, setValue] = useState(0);
 
+
     return (
         <BottomNavigation
             showLabels
             value={value}
-            onChange={(event, newValue) => {
+            onChange={(_, newValue) => {
+                console.log("This was triggered")
                 setValue(newValue);
-                console.log(event);
             }}>
-            <BottomNavigationAction label="Home" icon={<TimelineIcon />} />
+            <BottomNavigationAction label="Home" icon={<TimelineIcon />} href="./"/>
             <BottomNavigationAction label="Record" icon={<RadioButtonCheckedIcon />} />
             <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} />
         </BottomNavigation>
