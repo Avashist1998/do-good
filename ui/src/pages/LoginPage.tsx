@@ -37,12 +37,16 @@ const LoginPage: React.FC = () => {
         <PageTemplate>
             <div className="h-lvh py-16">
             <div className="flex justify-center space-x-4">
-                <Button variant="contained" sx={{borderRadius: 0, backgroundColor: 'white', color: 'black' }} disabled={!showLoginIn} onClick={() => {setShowLoginIn(false)}}>
-                    Sign Up
-                </Button> 
-                <Button color="primary" variant="contained" sx={{borderRadius: 0,  backgroundColor: 'white', color: 'black' }} disabled={showLoginIn} onClick={() => {setShowLoginIn(true)}}>
-                    Log In
-                </Button>
+                <div className='rounded-lg'>
+                    <Button variant="contained" sx={{borderRadius: 2, backgroundColor: 'white', color: 'black' }} disabled={!showLoginIn} onClick={() => {setShowLoginIn(false)}}>
+                        Sign Up
+                    </Button> 
+                </div>
+                <div className='rounded-lg'>
+                    <Button color="primary" variant="contained" sx={{borderRadius: 2,  backgroundColor: 'white', color: 'black' }} disabled={showLoginIn} onClick={() => {setShowLoginIn(true)}}>
+                        Log In
+                    </Button>
+                </div>
             </div>
 
             <div className="flex justify-center">

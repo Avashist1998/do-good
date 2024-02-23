@@ -43,7 +43,7 @@ const ActivityCard = (props: {
                     <CardMedia
                         component="img"
                         height="300"
-                        image="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png"
+                        image={props.activity.img_url}
                         alt="Paella dish"
                     />
                     <CardContent>
