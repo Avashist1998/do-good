@@ -14,6 +14,7 @@ const HomePage: React.FC = () => {
     const [activities, setActivities] = useState<ActivityData[]>([]);
 
     useEffect(() => {
+        console.log("Getting activities");
         getActivities().then((res) => {
             setActivities(res);
         }).catch((error) => {

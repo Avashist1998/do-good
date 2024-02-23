@@ -12,16 +12,12 @@ const PageTemplate = (
 {/* </div> */}
 
     return (
-        <div className="background bg-amber-100 min-h-screen w-95 mx-auto">
-            <div className="flex justify-center items-center">
-                <div className="content w-full bg-pink-400 bg-opacity-50 shadow-md p-16 h-64">
-                    {props.children}
-                </div>
-            </div>
+        <div className="bg-gradient-to-r from-lime-400 to-lim-600 h-full w-full">
+        <div className="flex justify-center items-center ">
+            <div>{props.children}</div> 
+        </div>
         </div>
     )
 }
-// #fbfbeb, faded color for  background
-// #1f2708, darker for added logo
 
 export default PageTemplate;
