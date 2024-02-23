@@ -54,7 +54,7 @@ const LogInForm = ( props: {
         </div>
 
         <div className="justify-center flex p-2 mt-8">
-                <div className="bg-green-900 text-white">
+                <div className="bg-green-900 text-white rounded-lg">
                     <Button  variant="contained" color="success" disabled={!enableSignUpButton} onClick={logInUser}>
                         Log In
                     </Button>

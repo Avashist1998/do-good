@@ -34,13 +34,15 @@ const TopAppBar = () => {
             edge="start"
             color="inherit"
             aria-label="menu"
-            sx={{ 
-              padding: '0px',
-              marginRight: '36px',  
+            sx={{
+              marginRight: '36px',
+              marginLeft: '6px',
+              width: '50px',
+              height: '60px', 
             }}
             onClick={goHome}
           >
-            <Icon sx={{ width: '90px', height: '95px' }} >
+            <Icon sx={{ fontSize: "100px"}} >
               <img src={Logo} className='w-full h-full'/>
             </Icon>
           </IconButton>

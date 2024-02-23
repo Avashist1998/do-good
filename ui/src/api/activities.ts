@@ -17,6 +17,7 @@ const activity_data = [
       "tags": [
         "#SDG5"
       ],
+      "img_url":"https://www.signupgenius.com/cms/images/nonprofit/community-service-ideas.jpg",
       "likes": 76
     },
     {
@@ -34,7 +35,8 @@ const activity_data = [
       "tags": [
         "#SDG13"
       ],
-      "likes": 42
+      "likes": 42,
+      "img_url":"https://youthtoday.org/wp-content/uploads/sites/13/2019/11/shutterstock_723689029.jpg",
     },
     {
       "activity_id": "ACT003",
@@ -51,7 +53,8 @@ const activity_data = [
       "tags": [
         "#SDG7"
       ],
-      "likes": 62
+      "likes": 62,
+      "img_url":"https://images.ctfassets.net/prb17lxex1hm/3Mef74PpEuoMPuncOnV1Iz/5adb470c181444360762c0cab30161ec/CC_TESCO_011.png",
     },
     {
       "activity_id": "ACT004",
@@ -68,7 +71,8 @@ const activity_data = [
       "tags": [
         "#SDG11"
       ],
-      "likes": 38
+      "likes": 38,
+      "img_url":"https://media-be.chewy.com/wp-content/uploads/2021/11/22103647/animal-shelter-numbers.jpg",
     },
     {
       "activity_id": "ACT005",
@@ -85,7 +89,8 @@ const activity_data = [
       "tags": [
         "#SDG1"
       ],
-      "likes": 88
+      "likes": 88,
+      "img_url":"https://www.foodbankrockies.org/wp-content/uploads/2022/12/volunteer-food-bank.jpg",
     },
     {
       "activity_id": "ACT006",
@@ -100,7 +105,8 @@ const activity_data = [
       "organization_id": "3a1e816e-06e4-4f78-8a41-cc62c5e8e624",
       "type": "Environmental Conservation",
       "tags": ["#SDG15"],
-      "likes": 55
+      "likes": 55,
+      "img_url":"https://media.sciencephoto.com/f0/24/24/97/f0242497-800px-wm.jpg"
     },
     {
       "activity_id": "ACT007",
@@ -115,7 +121,8 @@ const activity_data = [
       "organization_id": "dcd1b577-fdf8-4d52-8893-8b31d3d11a7b",
       "type": "Community Service",
       "tags": ["#SDG3"],
-      "likes": 35
+      "likes": 35,
+      "img_url":"https://www.indystar.com/gcdn/presto/2020/06/18/PIND/052b2ac3-473e-4015-8615-2318ec4414b4-first.jpg",
     },
     {
       "activity_id": "ACT008",
@@ -130,7 +137,8 @@ const activity_data = [
       "organization_id": "",
       "type": "Community Cleanup",
       "tags": ["#SDG15"],
-      "likes": 40
+      "likes": 40,
+      "img_url":"https://vinedisposal.com/AoOJmJbG1m8wSPOR58q4RG7KGRdXBYB81655215859.jpg",
     },
     {
       "activity_id": "ACT009",
@@ -145,7 +153,8 @@ const activity_data = [
       "organization_id": "d9874162-6886-4eae-99c1-2d701f42602e",
       "type": "Healthcare",
       "tags": ["#SDG3"],
-      "likes": 70
+      "likes": 70,
+      "img_url":"https://millardwestcatalyst.com/wp-content/uploads/2021/02/HOSA-Pic-900x900.jpg",
     },
     {
       "activity_id": "ACT010",
@@ -160,7 +169,8 @@ const activity_data = [
       "organization_id": "f7f1dcb9-2904-4b7b-99b4-28a38a6f8df6",
       "type": "Volunteer",
       "tags": ["#SDG1"],
-      "likes": 45
+      "likes": 45,
+      "img_url":"https://www.thechannels.org/wp-content/uploads/2012/10/EdenCharity1-1024x619.jpg",
     }
   ]
 
@@ -176,6 +186,7 @@ export const getActivities = (): Promise<ActivityData[]> => {
               title: activity.title,
               description: activity.description,
               tags: activity.tags,
+              img_url: activity.img_url,
           } as ActivityData;
       }));
   });
@@ -194,6 +205,7 @@ export const getActivity = (activity_id: string): Promise<ActivityData> => {
               title: activity.title,
               description: activity.description,
               tags: activity.tags,
+              img_url: activity.img_url,
           } as ActivityData);
       } else {
           reject("Activity not found");
