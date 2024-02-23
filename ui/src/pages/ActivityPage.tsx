@@ -17,6 +17,7 @@ const ActivityPage: React.FC = () => {
     const [activity, setActivity] = useState<ActivityData | null>(null);
 
     useEffect(() => {
+        console.log("Getting activity");
         const id: string = activityId || "";
         getActivity(id).then((res) => {
             setActivity(res);
