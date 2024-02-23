@@ -12,7 +12,7 @@ const HomePage: React.FC = () => {
 
     const navigate = useNavigate();
     const [activities, setActivities] = useState<ActivityData[]>([]);
-    
+
     useEffect(() => {
         getActivities().then((res) => {
             setActivities(res);
