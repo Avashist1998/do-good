@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-
 import { BottomNavigation, BottomNavigationAction } from '@mui/material';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import TimelineIcon from '@mui/icons-material/Timeline';
@@ -37,7 +36,7 @@ const NavigationBar = () => {
     }
 
     return (
-        <BottomNavigation
+        <BottomNavigation 
             showLabels
             value={value}
             onChange={(_, newValue) => {

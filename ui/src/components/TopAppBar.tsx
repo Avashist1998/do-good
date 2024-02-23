@@ -27,7 +27,7 @@ const TopAppBar = () => {
   }
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="static" sx={{bgcolor:"#51882a"}} >
         <Toolbar>
           <IconButton
             size="large"
