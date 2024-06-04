@@ -5,7 +5,7 @@ const activity_data = [
     {
       "activity_id": "ACT001",
       "title": "Community Cleanup",
-      "name": "Geetanjali Vashist",
+      "creator": "Geetanjali Vashist",
       "description": "Community Cleanup event organized by local community",
       "date": "2024-02-21",
       "latitude": 37.7749,
@@ -23,7 +23,7 @@ const activity_data = [
     {
       "activity_id": "ACT002",
       "title": "Beach Cleanup",
-      "name": "Jane Smith",
+      "creator": "Jane Smith",
       "description": "Community Cleanup event organized by Clean Beaches Organization",
       "date": "2024-02-21",
       "latitude": 40.7128,
@@ -41,7 +41,7 @@ const activity_data = [
     {
       "activity_id": "ACT003",
       "title": "Teaching kids to code",
-      "name": "David Johnson",
+      "creator": "David Johnson",
       "description": "Teaching kids to code event organized by local school",
       "date": "2024-02-21",
       "latitude": 34.0522,
@@ -59,7 +59,7 @@ const activity_data = [
     {
       "activity_id": "ACT004",
       "title": "Animal Shelter Volunteer",
-      "name": "Emily Brown",
+      "creator": "Emily Brown",
       "description": "Organized by Every Animal Matters",
       "date": "2024-02-21",
       "latitude": 51.5074,
@@ -77,7 +77,7 @@ const activity_data = [
     {
       "activity_id": "ACT005",
       "title": "Volunteer at Food Bank",
-      "name": "Michael Wilson",
+      "creator": "Michael Wilson",
       "description": "Organized by the Houston food bank",
       "date": "2024-02-21",
       "latitude": 51.5074,
@@ -95,7 +95,7 @@ const activity_data = [
     {
       "activity_id": "ACT006",
       "title": "Tree Planting",
-      "name": "Alexandra Martinez",
+      "creator": "Alexandra Martinez",
       "description": "Tree planting event organized by Green Earth Initiative",
       "date": "2024-02-22",
       "latitude": 34.0522,
@@ -111,7 +111,7 @@ const activity_data = [
     {
       "activity_id": "ACT007",
       "title": "Senior Center Visit",
-      "name": "Sophia Lee",
+      "creator": "Sophia Lee",
       "description": "Visiting senior center organized by Helping Hands Foundation",
       "date": "2024-02-22",
       "latitude": 40.7128,
@@ -127,7 +127,7 @@ const activity_data = [
     {
       "activity_id": "ACT008",
       "title": "Park Cleanup",
-      "name": "Daniel Garcia",
+      "creator": "Daniel Garcia",
       "description": "Park cleanup event organized by City Parks Department",
       "date": "2024-02-22",
       "latitude": 37.7749,
@@ -143,7 +143,7 @@ const activity_data = [
     {
       "activity_id": "ACT009",
       "title": "Blood Donation Drive",
-      "name": "Isabella Rodriguez",
+      "creator": "Isabella Rodriguez",
       "description": "Blood donation drive organized by Red Cross",
       "date": "2024-02-22",
       "latitude": 34.0522,
@@ -159,7 +159,7 @@ const activity_data = [
     {
       "activity_id": "ACT010",
       "title": "Homeless Shelter Volunteer",
-      "name": "Ethan Thompson",
+      "creator": "Ethan Thompson",
       "description": "Volunteering at local homeless shelter organized by Community Aid Organization",
       "date": "2024-02-22",
       "latitude": 51.5074,
@@ -179,7 +179,7 @@ export const getActivities = (): Promise<ActivityData[]> => {
       resolve(activity_data.map((activity: any) => {
           return {
               activity_id: activity.activity_id,
-              name: activity.name,
+              creator: activity.creator,
               date: activity.date,
               points: activity.points,
               duration: activity.duration,
@@ -192,13 +192,18 @@ export const getActivities = (): Promise<ActivityData[]> => {
   });
 };
 
+
+export const getActivityCount = (): number => {
+  return activity_data.length;
+}
+
 export const getActivity = (activity_id: string): Promise<ActivityData> => {
   return new Promise((resolve, reject) => {
       const activity = activity_data.find((activity) => activity.activity_id === activity_id);
       if (activity) {
           resolve({
               activity_id: activity.activity_id,
-              name: activity.name,
+              creator: activity.creator,
               date: activity.date,
               points: activity.points,
               duration: activity.duration,
@@ -213,6 +218,12 @@ export const getActivity = (activity_id: string): Promise<ActivityData> => {
   });
 }
 
+
+export const addActivity = (activity: ActivityData) => {
+  activity_data.unshift(
+    activity
+  );
+}
 
 
 

@@ -21,7 +21,7 @@ const ActivityCard = (props: {
                 <CardHeader
                     avatar={
                         <Avatar sx={{ bgcolor:  color}} aria-label="recipe">
-                            {props.activity.name[0]}
+                            {props.activity.creator[0]}
                         </Avatar>
                     }
                     action={
@@ -29,7 +29,7 @@ const ActivityCard = (props: {
                         <MoreVertIcon />
                     </IconButton>}
 
-                    title={props.activity.name}
+                    title={props.activity.creator}
                     subheader={new Date(props.activity.date).toLocaleDateString(undefined, {
                                             year: 'numeric',
                                             month: 'short',

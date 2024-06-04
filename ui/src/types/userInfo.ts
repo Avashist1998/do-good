@@ -4,5 +4,4 @@ type UserInfo = {
     token: string
 }
 
-
 export default UserInfo;

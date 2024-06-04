@@ -10,6 +10,9 @@ const NavigationBar = () => {
 
     const navigate = useNavigate();
     const location = useLocation();
+    const navigateTo = (path: string) => {
+        navigate(path);
+    }
 
     const getActiveTab = () => {
         if (location.pathname === "/") {
@@ -31,9 +34,6 @@ const NavigationBar = () => {
 
     const [value, setValue] = useState(getActiveTab());
 
-    const navigateTo = (path: string) => {
-        navigate(path);
-    }
 
     return (
         <BottomNavigation 

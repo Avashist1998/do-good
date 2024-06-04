@@ -1,7 +1,7 @@
 type ActivityData = {
     activity_id: string,
     title: string,
-    name: string,
+    creator: string,
     description: string,
     date: string,
     latitude: number,
