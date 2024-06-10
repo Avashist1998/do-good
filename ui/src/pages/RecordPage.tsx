@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { Button, TextField} from '@mui/material';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
+import { Unstable_NumberInput as NumberInput } from '@mui/base/Unstable_NumberInput';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Box from '@mui/material/Box';
@@ -14,7 +15,7 @@ import LocationData from '../types/location';
 import { CurrentUserContext } from '../contexts/UserContext';
 
 import LayoutTemplate from './LayoutTemplate';
-import { addActivity, getActivities, getActivityCount } from '../api/activities';
+import { addActivity, getActivities, getActivityCount, getActivityTypes } from '../api/activities';
 import ActivityData from '../types/activity';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -27,13 +28,13 @@ const RecordPage: React.FC = () => {
     const creator = userData?.username
     const [isValidInput, setIsValidInput] = useState<Boolean>(false);
     const [title, setTitle] = useState("");
-    const [duration, setDuration] = useState("");
+    const [duration, setDuration] = useState<number | null>(null);
     const [activityType, setActivityType] = useState("");
     const [activityGoal, setActivityGoal] = useState("");
     const [description, setDescription] = useState("");
     const [date, setDate] = useState("");
 
-
+    const activityTypes = getActivityTypes();
     const navigate = useNavigate();
     const navigateTo = (path: string) => {
         navigate(path);
@@ -56,7 +57,12 @@ const RecordPage: React.FC = () => {
         if (date === "") {
             return false
         }
-        console.log(date)
+        if (activityType === "") {
+            return false
+        }
+        if (duration === null) {
+            return false
+        }
         return true;
     }
 
@@ -76,10 +82,10 @@ const RecordPage: React.FC = () => {
             "date": date,
             "latitude": 51.5074,
             "longitude": -0.1278,
-            "points": Math.floor(Math.random()*500),
-            "duration": 5,
+            "points": Math.floor(duration*(500*(1 - Math.random()*0.1))),
+            "duration": duration,
             "organization_id": "",
-            "type": "Volunteer",
+            "type": activityType,
             "tags": ["#SDG1"],
             "likes": 0,
             "img_url":"https://www.thechannels.org/wp-content/uploads/2012/10/EdenCharity1-1024x619.jpg",
@@ -90,7 +96,6 @@ const RecordPage: React.FC = () => {
     return (
         <LayoutTemplate>
             <div>
-                <h1>Welcome: {userData?.username}</h1>
                 <div className="flex flex-col mt-8">
                     <div className="left-0">
                         <TextField label="Activity Title"  onChange={e => setTitle(e.target.value)}
@@ -110,14 +115,16 @@ const RecordPage: React.FC = () => {
                                 label="activityType"
                                 onChange={e => setActivityType(e.target.value)}
                             >
-                                <MenuItem value={"Volunteer"}>Volunteer</MenuItem>
-                                <MenuItem value={"Cleanup"}>Cleanup</MenuItem>
-                                <MenuItem value={"Climate Work"}>Climate work</MenuItem>
+                            {
+                                activityTypes.map(val => (
+                                    <MenuItem value={val}>{val}</MenuItem>   
+                                ))
+                            }   
                             </Select>
                         </FormControl>
                     </Box>
                     <TextField label="" sx={{ width: 200, paddingTop: 2, paddingBottom: 2}} type="date" onChange={e => setDate(e.target.value)}/> 
-                    <TextField label="Duration" onChange={e => setDuration(e.target.value)} style={{paddingTop: 2, paddingBottom: 2}}/>
+                    <NumberInput placeholder="Duration (hr)" value={duration} onChange={(e, val) => setDuration(val)} style={{paddingTop: 2, paddingBottom: 2}} />
                     <TextField label="Location" type="longitude" style={{paddingTop: 2, paddingBottom: 2}}/>
                     <TextField label="Organization" style={{paddingTop: 2, paddingBottom: 2}}/>
                     {/*

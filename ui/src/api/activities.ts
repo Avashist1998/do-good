@@ -174,6 +174,15 @@ const activity_data = [
     }
   ]
 
+const activityTypes = [
+  "Cleanup",
+  "Fundraising",
+  "Mentoring",
+  "Transporting",
+  "Collection",
+  "Marching",
+]
+
 export const getActivities = (): Promise<ActivityData[]> => {
   return new Promise((resolve) => {
       resolve(activity_data.map((activity: any) => {
@@ -225,5 +234,7 @@ export const addActivity = (activity: ActivityData) => {
   );
 }
 
-
+export const getActivityTypes = () => {
+  return activityTypes;
+}
 
