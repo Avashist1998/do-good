@@ -1,0 +1,9 @@
+services:
+  ui:
+    build: 
+      context: ./ui
+      dockerfile: Dockerfile
+    ports:
+      - "8090:8080"
+    expose:
+      - "8080"

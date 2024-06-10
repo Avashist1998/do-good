@@ -4,8 +4,12 @@ import react from '@vitejs/plugin-react'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: "/do-good/",
+  base: "./",
   server: {
+    host: "0.0.0.0",
     port: 3000,
+  },
+  preview: {
+    port: 8080
   }
 })
