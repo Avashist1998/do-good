@@ -17,7 +17,7 @@ import { CurrentUserContext } from '../contexts/UserContext';
 import LayoutTemplate from './LayoutTemplate';
 import { addActivity, getActivities, getActivityCount, getActivityTypes } from '../api/activities';
 import ActivityData from '../types/activity';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 const RecordPage: React.FC = () => {
@@ -39,7 +39,7 @@ const RecordPage: React.FC = () => {
     const navigateTo = (path: string) => {
         navigate(path);
     }
-
+    // TODO: Tags, Location, Organization
     useEffect(() => {
         getLocation().then((res) => {
             setLocation(res);
@@ -127,12 +127,6 @@ const RecordPage: React.FC = () => {
                     <NumberInput placeholder="Duration (hr)" value={duration} onChange={(e, val) => setDuration(val)} style={{paddingTop: 2, paddingBottom: 2}} />
                     <TextField label="Location" type="longitude" style={{paddingTop: 2, paddingBottom: 2}}/>
                     <TextField label="Organization" style={{paddingTop: 2, paddingBottom: 2}}/>
-                    {/*
-                    <Textield label="Activity Goals"/>
-                    <TextField label="Notes"/>
-                    <TextField label="Goals"/>
-                    <TextField label="Tag People"/>F
-                    */}
                     <div className="p-2">
                         <input accept='image/*' id="icon-button-file" type="file"></input>
                     </div>
