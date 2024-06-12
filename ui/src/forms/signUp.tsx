@@ -16,7 +16,6 @@ const SignUpUserForm = ( props: {
     const [emailError, setEmailError] = useState(false);
     const [passwordError, setPasswordError] = useState(false);
     const [enableSignUpButton, setEnableSignUpButton] = useState(false);
-
     useEffect(() => {
         let val = true;
         if (name === "") {
@@ -44,6 +43,7 @@ const SignUpUserForm = ( props: {
         const newUser = {
             name: name,
             email: email,
+            role: "user",
             password: password,
         } as UserSignUp;
         props.submitUser(newUser);

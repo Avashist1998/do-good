@@ -40,21 +40,26 @@ const ActivityCard = (props: {
                         props.navigateToActivity(props.activity.activity_id);
                     }
                 }}>
-                    <CardMedia
-                        component="img"
-                        height="300"
-                        image={props.activity.img_url}
-                        alt="Paella dish"
-                    />
-                    <CardContent>
-
-                        <Typography textAlign={"left"} gutterBottom variant="h5" component="div">
-                            {props.activity.title}
-                        </Typography>
-                        <Typography textAlign={"left"} variant="body2" color="text.secondary">
-                            {props.activity.description}
-                        </Typography>
-                    </CardContent>
+                {
+                    props.activity.img_url.length !== 0 ?
+                    <>
+                        <CardMedia
+                            component="img"
+                            height="300"
+                            image={props.activity.img_url[0]}
+                            alt="Paella dish"
+                        />
+                    </>
+                    : null
+                }
+                <CardContent>
+                    <Typography textAlign={"left"} gutterBottom variant="h5" component="div">
+                        {props.activity.title}
+                    </Typography>
+                    <Typography textAlign={"left"} variant="body2" color="text.secondary">
+                        {props.activity.description}
+                    </Typography>
+                </CardContent>
                 </CardActionArea>
                 <CardContent>
                     <ul className="flex space-x-2">
@@ -65,7 +70,7 @@ const ActivityCard = (props: {
                             {props.activity.duration || "0"} hr
                         </Typography>
                     </ul>
-                    <ul className={`flex space-x-${props.activity.tags.length}`}>
+                    {/* <ul className={`flex space-x-${props.activity.tags.length}`}>
                         {props.activity.tags.map((tag, index) => {
                             return (
                                 <li key={index}>
@@ -74,7 +79,7 @@ const ActivityCard = (props: {
                             )
                             })
                         }
-                    </ul>
+                    </ul> */}
                 </CardContent>
                 <div className='row flex justify-center'>
                     <div className="w-[50%]">

@@ -12,7 +12,7 @@ type ActivityData = {
     type: string,
     tags: string[],
     likes: number,
-    img_url: string,
+    img_url: string[],
 }
 
 export default ActivityData;

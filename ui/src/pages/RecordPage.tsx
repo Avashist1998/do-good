@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Button, TextField} from '@mui/material';
 import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Select from '@mui/material/Select';
 import { Unstable_NumberInput as NumberInput } from '@mui/base/Unstable_NumberInput';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -15,7 +15,8 @@ import LocationData from '../types/location';
 import { CurrentUserContext } from '../contexts/UserContext';
 
 import LayoutTemplate from './LayoutTemplate';
-import { addActivity, getActivities, getActivityCount, getActivityTypes } from '../api/activities';
+import { getActivityCount, getActivityTypes } from '../api/activities';
+import { addActivity } from '../api/db/activites';
 import ActivityData from '../types/activity';
 import { useNavigate } from 'react-router-dom';
 
@@ -30,7 +31,7 @@ const RecordPage: React.FC = () => {
     const [title, setTitle] = useState("");
     const [duration, setDuration] = useState<number | null>(null);
     const [activityType, setActivityType] = useState("");
-    const [activityGoal, setActivityGoal] = useState("");
+    // const [activityGoal, setActivityGoal] = useState("");
     const [description, setDescription] = useState("");
     const [date, setDate] = useState("");
 
@@ -74,6 +75,8 @@ const RecordPage: React.FC = () => {
     const handleEntry = () => {
         const count  = getActivityCount() + 1;
         const activityId = `ACT0${count}`;
+
+        const hourDuration = duration === null  ? 0 : duration;
         const newActivity = {
             "activity_id": activityId,
             "title": title,
@@ -82,16 +85,21 @@ const RecordPage: React.FC = () => {
             "date": date,
             "latitude": 51.5074,
             "longitude": -0.1278,
-            "points": Math.floor(duration*(500*(1 - Math.random()*0.1))),
+            "points": Math.floor(hourDuration*(500*(1 - Math.random()*0.1))),
             "duration": duration,
             "organization_id": "",
             "type": activityType,
             "tags": ["#SDG1"],
             "likes": 0,
-            "img_url":"https://www.thechannels.org/wp-content/uploads/2012/10/EdenCharity1-1024x619.jpg",
-        } as ActivityData
-        addActivity(newActivity);
-        navigateTo("/");
+            "img_url":["https://www.thechannels.org/wp-content/uploads/2012/10/EdenCharity1-1024x619.jpg"],
+        } as ActivityData;
+        if (userData !== null) {
+            addActivity(userData?.id, newActivity).then(() => {
+                navigateTo("/");
+            }).catch((error) => {
+                console.log(error);
+            });
+        }
     }
     return (
         <LayoutTemplate>
@@ -124,7 +132,7 @@ const RecordPage: React.FC = () => {
                         </FormControl>
                     </Box>
                     <TextField label="" sx={{ width: 200, paddingTop: 2, paddingBottom: 2}} type="date" onChange={e => setDate(e.target.value)}/> 
-                    <NumberInput placeholder="Duration (hr)" value={duration} onChange={(e, val) => setDuration(val)} style={{paddingTop: 2, paddingBottom: 2}} />
+                    <NumberInput placeholder="Duration (hr)" value={duration} onChange={(_, val) => setDuration(val)} style={{paddingTop: 2, paddingBottom: 2}} />
                     <TextField label="Location" type="longitude" style={{paddingTop: 2, paddingBottom: 2}}/>
                     <TextField label="Organization" style={{paddingTop: 2, paddingBottom: 2}}/>
                     <div className="p-2">

@@ -1,13 +1,41 @@
+import UserInfo from '../../types/userInfo';
+import UserLogin from '../../types/userLogin';
+import UserSignUp from '../../types/userSignUp';
 import { getPocketBaseInstance } from './pocketbaseInstance';
 
-export async function login(email: string, password: string) {
+
+export async function signUpUser(user: UserSignUp): Promise<UserInfo> {
+    const pb = getPocketBaseInstance();
+    const data = {
+        "username": user.name,
+        "email": user.email,
+        "emailVisibility": true,
+        "password": user.password,
+        "passwordConfirm": user.password,
+        "name": user.name,
+        "role": user.role
+    };
+    try {
+        console.log(data)
+        const newUser = await pb.collection('users').create(data);
+        return newUser as unknown as UserInfo
+    }
+    catch (error) {
+        console.log(error)
+        throw new Error('Failed to create a user');
+    }
+}
+
+
+export async function loginUser(user: UserLogin) {
     const pb = getPocketBaseInstance();
     try {
-        const user = await pb.collection('users').authWithPassword(email, password);
+        const authUser = await pb.collection('users').authWithPassword(user.email, user.password);
         if (pb.authStore.isValid) {
-            return user;
+            return authUser.record as unknown as UserInfo;
         }
-    } finally {
+    } catch (error) {
+        console.log(error)
         throw new Error('Invalid credentials');
     }
 }

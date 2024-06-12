@@ -2,7 +2,7 @@ import React from 'react';
 import { useContext, useState } from 'react';
 import { Button, Icon } from '@mui/material';
 
-import type UserInfo from '../types/userInfo';
+// import type UserInfo from '../types/userInfo';
 import { CurrentUserContext } from '../contexts/UserContext';
 import LogInForm from '../forms/login';
 import UserLogin from '../types/userLogin';
@@ -10,6 +10,7 @@ import SignUpUserForm from '../forms/signUp';
 import UserSignUp from '../types/userSignUp';
 import PageTemplate from './PageTemplate';
 import { useNavigate } from 'react-router-dom';
+import { signUpUser, loginUser } from "../api/db/auth";
 
 import Logo from '/logo.svg';
 
@@ -22,16 +23,32 @@ const LoginPage: React.FC = () => {
     const login = (user: UserLogin) => {
         console.log("Logging in");
         console.log(user);
-        sessionStorage.setItem("userData", JSON.stringify({username: "test", role: "admin", token: "test"}));
-        setUserData({username: "test", role: "admin", token: "test"} as UserInfo);
-        navigate("/")
+        loginUser(user).then(res => {
+            if (res != null) {
+                console.log("user returned")
+                console.log(res)
+                sessionStorage.setItem("userData", JSON.stringify(res));
+                setUserData(res);
+                navigate("/");
+            }
+        }).catch(err => {
+            console.log(err);
+            console.log("failed to signup");
+        })
     }
 
     const signUp = (user: UserSignUp) => {
         console.log("Signing up");
         console.log(user);
-        sessionStorage.setItem("userData", JSON.stringify({username: "test", role: "admin", token: "test"}));
-        setUserData({username: "test", role: "admin", token: "test"} as UserInfo);
+        signUpUser(user).then(res => {
+            if (res != null) {
+                sessionStorage.setItem("userData", JSON.stringify(res));
+                setUserData(res);
+            }
+        }).catch(err => {
+            console.log(err);
+            console.log("failed to signup");
+        })
     }
     return (
         <PageTemplate>
