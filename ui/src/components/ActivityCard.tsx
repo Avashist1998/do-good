@@ -12,9 +12,9 @@ const ActivityCard = (props: {
     navigateToActivity?: (activityId: string) => void
 }) => {
 
+    console.log(`Rendering activity ${props.activity}`);
     const [liked, setLiked] = useState(false);
     const color = [red[500], red[300], green[500], green[200], orange[500], blue[200]][props.activity.description.length % 6]
-    console.log(props.activity);
     return (
         <>
             <Card>
@@ -70,7 +70,7 @@ const ActivityCard = (props: {
                             {props.activity.duration || "0"} hr
                         </Typography>
                     </ul>
-                    {/* <ul className={`flex space-x-${props.activity.tags.length}`}>
+                    <ul className={`flex space-x-${props.activity.tags.length}`}>
                         {props.activity.tags.map((tag, index) => {
                             return (
                                 <li key={index}>
@@ -79,7 +79,7 @@ const ActivityCard = (props: {
                             )
                             })
                         }
-                    </ul> */}
+                    </ul>
                 </CardContent>
                 <div className='row flex justify-center'>
                     <div className="w-[50%]">

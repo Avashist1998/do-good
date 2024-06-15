@@ -4,14 +4,13 @@ import { getPocketBaseInstance } from './pocketbaseInstance';
 
 export async function getActivities(userId: string): Promise<ActivityData[]> {
     const pb = getPocketBaseInstance();
+    const res: ActivityData[] = []
     try {
         const activites = await pb.collection('activities').getList(1, 50, {
-            creator: `${userId}`,
+            filter: `creator="${userId}"`,
             expand: 'creator',
             sort: "-date"
         });
-        console.log(activites)
-        const res: ActivityData[] = []
         let index = 0;
         for await (const activity of activites.items) { 
             const activityData = activity as unknown as ActivityData;
@@ -23,7 +22,11 @@ export async function getActivities(userId: string): Promise<ActivityData[]> {
                     const url = pb.files.getUrl(activity, subURL, {'thumb': '100x250'});
                     activityData.img_url.push(url);
                 });
-                console.log(activityData)
+                activityData.tags = []
+                if (activity.tags !== null) {
+                    console.log(activity.tags)
+                    activityData.tags = activity.tags.split(",")
+                }
                 res.push(activityData);
             } catch (error) {
                 console.error(error)
@@ -46,7 +49,6 @@ export async function getActivity(activityId: string) {
         const activity = await pb.collection('activities').getOne(activityId, {
             expand: 'creator'
         });
-        console.log(activity)
         const activityData = activity as unknown as ActivityData;
         activityData.activity_id = activity.id
         activityData.creator = activity.expand?.creator.username
@@ -55,6 +57,10 @@ export async function getActivity(activityId: string) {
             const url = pb.files.getUrl(activity, subURL, {'thumb': '100x250'});
             activityData.img_url.push(url);
         });
+        if (activity.tags !== null) {
+            console.log(activity.tags)
+            activityData.tags = activity.tags.split(",")
+        }
         return activityData
     } catch (error) {
         console.log(error)
@@ -74,8 +80,8 @@ export async function addActivity(userId: string, activity: ActivityUploadData) 
             "description": activity.description,
             "points": activity.points,
             "duration": activity.duration,
-            "Type": activity.type,
-            "Tags": "[]",
+            "type": activity.type,
+            "tags": activity.tags.toString(),
             "images": activity.images
         };
         console.log(data)

@@ -6,7 +6,6 @@ import ActivityCard from '../components/ActivityCard';
 
 import { List, ListItem } from '@mui/material';
 import LayoutTemplate from './LayoutTemplate';
-// import { getActivities } from '../api/activities';
 import { getActivities } from '../api/db/activites';
 import { CurrentUserContext } from '../contexts/UserContext';
 
@@ -17,16 +16,15 @@ const HomePage: React.FC = () => {
     const [activities, setActivities] = useState<ActivityData[]>([]);
 
     useEffect(() => {
-        console.log(userData)
         if (userData !== null) {
-            console.log(userData)
+            console.log(`Getting activities for ${userData.username}`)
             getActivities(userData.id).then((res) => {
+                console.log(res);
                 setActivities(res);
             }).catch((error) => {
+                setActivities([])
                 console.log(error);
             });
-        } else {
-            setActivities([]);
         }
     },[])
 
@@ -34,7 +32,6 @@ const HomePage: React.FC = () => {
         const path = `./${activityId}`;
         console.log(path);
         navigate(path);
-
     }
 
     return (

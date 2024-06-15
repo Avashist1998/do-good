@@ -20,6 +20,7 @@ const ActivityPage: React.FC = () => {
     useEffect(() => {
         const id: string = activityId || "";
         getActivity(id).then((res) => {
+            console.log(res)
             setActivity(res);
         }).catch((error) => {
             console.log(error);
