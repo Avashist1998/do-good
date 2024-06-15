@@ -15,9 +15,9 @@ import LocationData from '../types/location';
 import { CurrentUserContext } from '../contexts/UserContext';
 
 import LayoutTemplate from './LayoutTemplate';
-import { getActivityCount, getActivityTypes } from '../api/activities';
+import { getActivityTypes } from '../api/activities';
 import { addActivity } from '../api/db/activites';
-import ActivityData, { ActivityUploadData } from '../types/activity';
+import { ActivityUploadData } from '../types/activity';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -74,8 +74,6 @@ const RecordPage: React.FC = () => {
     }, [title, date, activityType, duration])
 
     const handleEntry = () => {
-        const count  = getActivityCount() + 1;
-        // const activityId = `ACT0${count}`;
 
         const hourDuration = duration === null  ? 0 : duration;
         const newActivity = {

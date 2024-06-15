@@ -45,7 +45,7 @@ const LogInForm = ( props: {
         <div className="flex flex-col items-center mt-8">
             <div className="w-full md:w-96 p-4 bg-gray-100 rounded-lg shadow-lg">
                 <div className="mb-4">
-                    <TextField id="creatorEmail" label="Email" value={email} required onChange={e => setEmail(e.target.value)} error={emailError} fullWidth/>
+                    <TextField id="creatorEmail" label="Email" value={email} required onChange={e => setEmail(e.target.value.toLowerCase())} error={emailError} fullWidth/>
                 </div>
                 <div className="mb-4">
                     <TextField id="creatorPassword" label="Password" value={password} required onChange={e => setPassword(e.target.value)} type="password" error={passwordError} fullWidth/>

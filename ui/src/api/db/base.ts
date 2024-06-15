@@ -1,1 +1,1 @@
-export const dbURL = import.meta.env.VITE_DB_URL as string || "http://192.168.1.65:3010";
+export const dbURL = import.meta.env.VITE_DB_URL as string || "http://do-good-pd.avashist.com";

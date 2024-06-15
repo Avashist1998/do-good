@@ -57,7 +57,7 @@ const SignUpUserForm = ( props: {
                         <TextField id="eventName" label="Name" value={name} required onChange={e => setName(e.target.value)} error={nameError}/>
                     </div>
                     <div className="mb-4">
-                        <TextField id="creatorEmail" label="Email" value={email} required onChange={e => setEmail(e.target.value)} error={emailError}/>
+                        <TextField id="creatorEmail" label="Email" value={email} required onChange={e => setEmail(e.target.value.toLowerCase())} error={emailError}/>
                     </div>
                     <div className="mb-4">
                         <TextField id="creatorPassword" label="Password" value={password} required onChange={e => setPassword(e.target.value)} type="password" error={passwordError}/>

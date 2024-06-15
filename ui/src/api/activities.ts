@@ -17,7 +17,7 @@ const activity_data = [
       "tags": [
         "#SDG5"
       ],
-      "img_url":"https://www.signupgenius.com/cms/images/nonprofit/community-service-ideas.jpg",
+      "img_url": ["https://www.signupgenius.com/cms/images/nonprofit/community-service-ideas.jpg"],
       "likes": 76
     },
     {
@@ -36,7 +36,7 @@ const activity_data = [
         "#SDG13"
       ],
       "likes": 42,
-      "img_url":"https://youthtoday.org/wp-content/uploads/sites/13/2019/11/shutterstock_723689029.jpg",
+      "img_url": ["https://youthtoday.org/wp-content/uploads/sites/13/2019/11/shutterstock_723689029.jpg"]
     },
     {
       "activity_id": "ACT003",
@@ -54,7 +54,7 @@ const activity_data = [
         "#SDG7"
       ],
       "likes": 62,
-      "img_url":"https://images.ctfassets.net/prb17lxex1hm/3Mef74PpEuoMPuncOnV1Iz/5adb470c181444360762c0cab30161ec/CC_TESCO_011.png",
+      "img_url": ["https://images.ctfassets.net/prb17lxex1hm/3Mef74PpEuoMPuncOnV1Iz/5adb470c181444360762c0cab30161ec/CC_TESCO_011.png"],
     },
     {
       "activity_id": "ACT004",
@@ -72,7 +72,7 @@ const activity_data = [
         "#SDG11"
       ],
       "likes": 38,
-      "img_url":"https://media-be.chewy.com/wp-content/uploads/2021/11/22103647/animal-shelter-numbers.jpg",
+      "img_url": ["https://media-be.chewy.com/wp-content/uploads/2021/11/22103647/animal-shelter-numbers.jpg"],
     },
     {
       "activity_id": "ACT005",
@@ -90,7 +90,7 @@ const activity_data = [
         "#SDG1"
       ],
       "likes": 88,
-      "img_url":"https://www.foodbankrockies.org/wp-content/uploads/2022/12/volunteer-food-bank.jpg",
+      "img_url": ["https://www.foodbankrockies.org/wp-content/uploads/2022/12/volunteer-food-bank.jpg"],
     },
     {
       "activity_id": "ACT006",
@@ -106,7 +106,7 @@ const activity_data = [
       "type": "Environmental Conservation",
       "tags": ["#SDG15"],
       "likes": 55,
-      "img_url":"https://media.sciencephoto.com/f0/24/24/97/f0242497-800px-wm.jpg"
+      "img_url": ["https://media.sciencephoto.com/f0/24/24/97/f0242497-800px-wm.jpg"]
     },
     {
       "activity_id": "ACT007",
@@ -122,7 +122,7 @@ const activity_data = [
       "type": "Community Service",
       "tags": ["#SDG3"],
       "likes": 35,
-      "img_url":"https://www.indystar.com/gcdn/presto/2020/06/18/PIND/052b2ac3-473e-4015-8615-2318ec4414b4-first.jpg",
+      "img_url": ["https://www.indystar.com/gcdn/presto/2020/06/18/PIND/052b2ac3-473e-4015-8615-2318ec4414b4-first.jpg"],
     },
     {
       "activity_id": "ACT008",
@@ -138,7 +138,7 @@ const activity_data = [
       "type": "Community Cleanup",
       "tags": ["#SDG15"],
       "likes": 40,
-      "img_url":"https://vinedisposal.com/AoOJmJbG1m8wSPOR58q4RG7KGRdXBYB81655215859.jpg",
+      "img_url": ["https://vinedisposal.com/AoOJmJbG1m8wSPOR58q4RG7KGRdXBYB81655215859.jpg"],
     },
     {
       "activity_id": "ACT009",
@@ -154,7 +154,7 @@ const activity_data = [
       "type": "Healthcare",
       "tags": ["#SDG3"],
       "likes": 70,
-      "img_url":"https://millardwestcatalyst.com/wp-content/uploads/2021/02/HOSA-Pic-900x900.jpg",
+      "img_url": ["https://millardwestcatalyst.com/wp-content/uploads/2021/02/HOSA-Pic-900x900.jpg"]
     },
     {
       "activity_id": "ACT010",
@@ -170,7 +170,7 @@ const activity_data = [
       "type": "Volunteer",
       "tags": ["#SDG1"],
       "likes": 45,
-      "img_url":"https://www.thechannels.org/wp-content/uploads/2012/10/EdenCharity1-1024x619.jpg",
+      "img_url": ["https://www.thechannels.org/wp-content/uploads/2012/10/EdenCharity1-1024x619.jpg"]
     }
   ]
 
