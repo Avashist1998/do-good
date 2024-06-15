@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import type ActivityData from '../types/activity';
@@ -8,19 +8,26 @@ import { List, ListItem } from '@mui/material';
 import LayoutTemplate from './LayoutTemplate';
 // import { getActivities } from '../api/activities';
 import { getActivities } from '../api/db/activites';
+import { CurrentUserContext } from '../contexts/UserContext';
 
 const HomePage: React.FC = () => {
 
     const navigate = useNavigate();
+    const { userData } = useContext(CurrentUserContext)
     const [activities, setActivities] = useState<ActivityData[]>([]);
 
     useEffect(() => {
-        console.log("Getting activities");
-        getActivities().then((res) => {
-            setActivities(res);
-        }).catch((error) => {
-            console.log(error);
-        });
+        console.log(userData)
+        if (userData !== null) {
+            console.log(userData)
+            getActivities(userData.id).then((res) => {
+                setActivities(res);
+            }).catch((error) => {
+                console.log(error);
+            });
+        } else {
+            setActivities([]);
+        }
     },[])
 
     const navigateToActivity = (activityId: string) => {

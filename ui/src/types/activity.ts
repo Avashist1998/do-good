@@ -1,3 +1,15 @@
+export type ActivityUploadData = {
+    title: string,
+    creator: string,
+    description: string,
+    date: string,
+    points: number,
+    duration: number,
+    type: string,
+    tags: string[],
+    images: File[],
+}
+
 type ActivityData = {
     activity_id: string,
     title: string,

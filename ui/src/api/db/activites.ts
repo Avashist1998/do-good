@@ -1,13 +1,14 @@
-import ActivityData from '../../types/activity';
+import ActivityData, { ActivityUploadData } from '../../types/activity';
 import { getPocketBaseInstance } from './pocketbaseInstance';
 
 
-export async function getActivities(): Promise<ActivityData[]> {
+export async function getActivities(userId: string): Promise<ActivityData[]> {
     const pb = getPocketBaseInstance();
     try {
-        console.log("this was called")
         const activites = await pb.collection('activities').getList(1, 50, {
-            expand: 'creator' 
+            creator: `${userId}`,
+            expand: 'creator',
+            sort: "-date"
         });
         console.log(activites)
         const res: ActivityData[] = []
@@ -62,7 +63,7 @@ export async function getActivity(activityId: string) {
 }
 
 
-export async function addActivity(userId: string, activity: ActivityData) {
+export async function addActivity(userId: string, activity: ActivityUploadData) {
     const pb = getPocketBaseInstance();
     try {
 
@@ -74,7 +75,8 @@ export async function addActivity(userId: string, activity: ActivityData) {
             "points": activity.points,
             "duration": activity.duration,
             "Type": activity.type,
-            "Tags": "[]"
+            "Tags": "[]",
+            "images": activity.images
         };
         console.log(data)
         const newActivity = await pb.collection('activities').create(data);

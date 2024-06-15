@@ -17,7 +17,7 @@ import { CurrentUserContext } from '../contexts/UserContext';
 import LayoutTemplate from './LayoutTemplate';
 import { getActivityCount, getActivityTypes } from '../api/activities';
 import { addActivity } from '../api/db/activites';
-import ActivityData from '../types/activity';
+import ActivityData, { ActivityUploadData } from '../types/activity';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -27,13 +27,14 @@ const RecordPage: React.FC = () => {
     const [location, setLocation] = useState<LocationData | null>(null);
     
     const creator = userData?.username
+    const [images, setImages] = useState<File>();
     const [isValidInput, setIsValidInput] = useState<Boolean>(false);
     const [title, setTitle] = useState("");
     const [duration, setDuration] = useState<number | null>(null);
     const [activityType, setActivityType] = useState("");
-    // const [activityGoal, setActivityGoal] = useState("");
     const [description, setDescription] = useState("");
     const [date, setDate] = useState("");
+    // const [activityGoal, setActivityGoal] = useState("");
 
     const activityTypes = getActivityTypes();
     const navigate = useNavigate();
@@ -70,29 +71,24 @@ const RecordPage: React.FC = () => {
     useEffect(() => {
         const res = inputValidation();
         setIsValidInput(res)
-    }, [title, date])
+    }, [title, date, activityType, duration])
 
     const handleEntry = () => {
         const count  = getActivityCount() + 1;
-        const activityId = `ACT0${count}`;
+        // const activityId = `ACT0${count}`;
 
         const hourDuration = duration === null  ? 0 : duration;
         const newActivity = {
-            "activity_id": activityId,
             "title": title,
             "creator": creator,
             "description": description,
             "date": date,
-            "latitude": 51.5074,
-            "longitude": -0.1278,
             "points": Math.floor(hourDuration*(500*(1 - Math.random()*0.1))),
             "duration": duration,
-            "organization_id": "",
             "type": activityType,
             "tags": ["#SDG1"],
-            "likes": 0,
-            "img_url":["https://www.thechannels.org/wp-content/uploads/2012/10/EdenCharity1-1024x619.jpg"],
-        } as ActivityData;
+            "images": [images],
+        } as ActivityUploadData;
         if (userData !== null) {
             addActivity(userData?.id, newActivity).then(() => {
                 navigateTo("/");
@@ -136,7 +132,11 @@ const RecordPage: React.FC = () => {
                     <TextField label="Location" type="longitude" style={{paddingTop: 2, paddingBottom: 2}}/>
                     <TextField label="Organization" style={{paddingTop: 2, paddingBottom: 2}}/>
                     <div className="p-2">
-                        <input accept='image/*' id="icon-button-file" type="file"></input>
+                        <input accept='image/*' id="icon-button-file" type="file" onChange={e => {
+                            if (e.target.files !== null) {
+                                setImages(e.target.files[0])
+                            }
+                        }}></input>
                     </div>
                     <div className='rounded-lg'>
                         <Button variant="contained" sx={{borderRadius: 2, backgroundColor: 'white', color: 'black' }} onClick={handleEntry} disabled={!isValidInput}>
