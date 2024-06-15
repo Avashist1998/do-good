@@ -10,7 +10,7 @@ const LayoutTemplate = (props: { children: React.ReactNode }) => {
                 <TopAppBar/>
             </div>
             <PageTemplate>
-                <div className="overflow-x pt-16">
+                <div className="overflow-x pt-16 px-2">
                     {props.children}
                 </div>
             </PageTemplate>
