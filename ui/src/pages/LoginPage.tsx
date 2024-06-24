@@ -34,13 +34,11 @@ const LoginPage: React.FC = () => {
         console.log("Logging in");
         console.log(user);
         loginUser(user).then(res => {
-            if (res != null) {
-                console.log("user returned")
-                console.log(res)
-                sessionStorage.setItem("userData", JSON.stringify(res));
-                setUserData(res);
-                navigate("/");
-            }
+            console.log("user returned")
+            console.log(res)
+            sessionStorage.setItem("userData", JSON.stringify(res));
+            setUserData(res);
+            navigate("/");
         }).catch(err => {
             console.log(err);
             setShowMessage(true)
@@ -52,12 +50,10 @@ const LoginPage: React.FC = () => {
         console.log("Signing up");
         console.log(user);
         signUpUser(user).then(res => {
-            if (res != null) {
-                sessionStorage.setItem("userData", JSON.stringify(res));
-                setUserData(res);
-                setShowMessage(true)
-                setMessage({text: "Congratuations you have sign up", error: false} as Message);
-            }
+            sessionStorage.setItem("userData", JSON.stringify(res));
+            setUserData(res);
+            setShowMessage(true)
+            setMessage({text: "Congratulations you have sign up", error: false} as Message);
         }).catch(err => {
             console.log(err);
             setShowMessage(true)
@@ -114,7 +110,9 @@ const LoginPage: React.FC = () => {
                 </div>
                 {
                     showMessage ?
-                    <MessageAlert isError={message.error} msg={message.text}/> : null
+                    <Suspense fallback={<CircularProgress/>}>
+                        <MessageAlert isError={message.error} msg={message.text}/> 
+                    </Suspense> : null
                 }
                 <div className="flex justify-center z-10">
                     <Icon sx={{ width: '200px', height: '205px' }} >

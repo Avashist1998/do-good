@@ -7,8 +7,7 @@ import ActivityCard from '../components/ActivityCard';
 
 import { Box, CircularProgress } from '@mui/material';
 import LayoutTemplate from './LayoutTemplate';
-// import { getActivity } from '../api/activities';
-import { getActivity } from '../api/db/activites';
+import { getActivity } from '../api/db/activities';
 
 const ActivityPage: React.FC = () => {
 

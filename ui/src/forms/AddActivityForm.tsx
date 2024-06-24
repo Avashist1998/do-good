@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import getLocation from '../api/location';
 import LocationData from '../types/location';
-import { getActivityTypes } from '../api/activities';
+import { getActivityTypes } from '../api/mock/activities';
 import ActivityData, { ActivityUploadData } from '../types/activity';
 
 import { useNavigate } from 'react-router-dom';
@@ -17,7 +17,7 @@ import UserInfo from "../types/userInfo";
 
 const AddActivityForm = (props: {userData: UserInfo | null, addActivity: (userId: string, activity: ActivityUploadData) => Promise<ActivityData>}) => {
 
-    const [isValidInput, setIsValidInput] = useState<Boolean>(false);
+    const [isValidInput, setIsValidInput] = useState<boolean>(false);
     const [title, setTitle] = useState("");
     const [duration, setDuration] = useState<number | null>(null);
     const [activityType, setActivityType] = useState("");
@@ -46,7 +46,7 @@ const AddActivityForm = (props: {userData: UserInfo | null, addActivity: (userId
         
     }, [])
 
-    const inputValidation = (): Boolean => {
+    const inputValidation = (): boolean => {
         if (title === "") {
             return false
         }

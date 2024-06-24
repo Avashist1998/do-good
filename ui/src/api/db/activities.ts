@@ -11,7 +11,6 @@ export async function getActivities(userId: string): Promise<ActivityData[]> {
             expand: 'creator',
             sort: "-date"
         });
-        let index = 0;
         for await (const activity of activites.items) { 
             const activityData = activity as unknown as ActivityData;
             try {
@@ -32,8 +31,7 @@ export async function getActivities(userId: string): Promise<ActivityData[]> {
                 console.error(error)
                 res.push(activityData);
             }
-            index += 1;
-        };
+        }
         console.log(res);
         return res;
     }

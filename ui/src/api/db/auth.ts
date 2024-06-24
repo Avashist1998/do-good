@@ -27,13 +27,17 @@ export async function signUpUser(user: UserSignUp): Promise<UserInfo> {
 }
 
 
-export async function loginUser(user: UserLogin) {
+export async function loginUser(user: UserLogin) : Promise<UserInfo> {
     const pb = getPocketBaseInstance();
     try {
-        const authUser = await pb.collection('users').authWithPassword(user.email, user.password);
         if (pb.authStore.isValid) {
-            return authUser.record as unknown as UserInfo;
+            const authUser = await pb.collection('users').authWithPassword(user.email, user.password);
+            const userInfo = authUser.record as unknown as UserInfo;
+            if (userInfo !== undefined) {
+                return userInfo;
+            }
         }
+        throw new Error("Invalid credentials");
     } catch (error) {
         console.log(error)
         throw new Error('Invalid credentials');
@@ -45,7 +49,7 @@ export async function logout() {
     const pb = getPocketBaseInstance();
     try {
         await pb.authStore.clear();
-    } finally {
+    } catch (error) {
         throw new Error('Error logging out');
     }
 }

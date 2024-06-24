@@ -1,4 +1,4 @@
-import ActivityData from "../types/activity";
+import ActivityData, { ActivityUploadData } from "../../types/activity";
 
 
 const activity_data = [
@@ -183,9 +183,10 @@ const activityTypes = [
   "Marching",
 ]
 
-export const getActivities = (): Promise<ActivityData[]> => {
+export const getActivities = (userId: string): Promise<ActivityData[]> => {
+  console.log(userId)
   return new Promise((resolve) => {
-      resolve(activity_data.map((activity: any) => {
+      resolve(activity_data.map((activity: ActivityData) => {
           return {
               activity_id: activity.activity_id,
               creator: activity.creator,
@@ -228,11 +229,35 @@ export const getActivity = (activity_id: string): Promise<ActivityData> => {
 }
 
 
-export const addActivity = (activity: ActivityData) => {
+export const addActivity = (userId: string, activity: ActivityUploadData): Promise<ActivityData> => {
+
+  const newActivity =     {
+    activity_id: "ACT010",
+    title: activity.title,
+    creator: userId,
+    description: activity.description,
+    date: activity.date,
+    latitude: 51.5074,
+    longitude: -0.1278,
+    points: activity.points,
+    duration: activity.duration,
+    organization_id: "f7f1dcb9-2904-4b7b-99b4-28a38a6f8df6",
+    type: activity.type,
+    tags: activity.tags,
+    likes: 15,
+    img_url: ["https://www.thechannels.org/wp-content/uploads/2012/10/EdenCharity1-1024x619.jpg"]
+  } as ActivityData
   activity_data.unshift(
-    activity
+    newActivity
   );
-}
+
+  return new Promise((resolve, reject) => {
+    if (newActivity) {
+      resolve(newActivity);
+    } else {
+      reject("no new activity")
+    }})
+  }
 
 export const getActivityTypes = () => {
   return activityTypes;
