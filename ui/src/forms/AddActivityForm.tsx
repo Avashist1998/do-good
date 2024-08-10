@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import getLocation from '../api/location';
 import LocationData from '../types/location';
-import { getActivityTypes } from '../api/mock/activities';
+import { getActivityTypes } from '../api/mock/activites';
 import ActivityData, { ActivityUploadData } from '../types/activity';
 
 import { useNavigate } from 'react-router-dom';

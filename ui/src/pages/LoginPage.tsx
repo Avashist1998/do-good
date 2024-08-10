@@ -8,7 +8,8 @@ import UserLogin from '../types/userLogin';
 import UserSignUp from '../types/userSignUp';
 import PageTemplate from './PageTemplate';
 import { useNavigate } from 'react-router-dom';
-import { signUpUser, loginUser } from "../api/db/auth";
+// import { signUpUser, loginUser } from "../api/db/auth";
+import { signUpUser, loginUser } from '../api/mock/auth';
 
 
 import Logo from '/logo.svg';
