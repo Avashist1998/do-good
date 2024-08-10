@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 
 // import { addActivity } from '../api/db/activites';
-import { addActivity } from '../api/mock/activites';
+import { addActivity } from "../api/mock/activities";
 import { CurrentUserContext } from '../contexts/UserContext';
 
 import LayoutTemplate from './LayoutTemplate';
