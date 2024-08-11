@@ -13,7 +13,8 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Box from '@mui/material/Box';
 import UserInfo from "../types/userInfo";
-import TagsInput from "../components/TagsInput";
+import TagsField from "../components/TagsField";
+import useTags from "../components/useTags"
 
 const AddActivityForm = (props: {userData: UserInfo | null, addActivity: (userId: string, activity: ActivityUploadData) => Promise<ActivityData>}) => {
 
@@ -22,7 +23,7 @@ const AddActivityForm = (props: {userData: UserInfo | null, addActivity: (userId
     const [duration, setDuration] = useState<number | null>(null);
     const [activityType, setActivityType] = useState("");
     const [description, setDescription] = useState("");
-    const [TagsInput, setTagsInput] = useState("");
+    const { tags, addTag, removeTag } = useTags();
     const [date, setDate] = useState("");
     const [images, setImages] = useState<File>();
     const [location, setLocation] = useState<LocationData | null>(null);
@@ -80,7 +81,7 @@ const AddActivityForm = (props: {userData: UserInfo | null, addActivity: (userId
             "points": Math.floor(hourDuration*(500*(1 - Math.random()*0.1))),
             "duration": duration,
             "type": activityType,
-            "tags": ["#SDG1"],
+            "tags": tags,
             "images": [images],
         } as ActivityUploadData;
         if (props.userData !== null) {
@@ -121,9 +122,9 @@ const AddActivityForm = (props: {userData: UserInfo | null, addActivity: (userId
                 </Select>
             </FormControl>
         </Box>
-            <FormControl fullWidth>
-                <TagsInput onChange={e => setTagsInput(e.target.value)}/>
-            </FormControl>
+        <FormControl fullWidth>
+            <TagsField tags={tags} addTag={addTag} removeTag={removeTag}/>
+        </FormControl>
         <TextField label="" sx={{ width: 200, paddingTop: 2, paddingBottom: 2}} type="date" onChange={e => setDate(e.target.value)}/> 
         <TextField inputProps={{ type: 'number'}} placeholder="Duration (hr)" sx={{ width: 200, paddingTop: 2, paddingBottom: 2}} value={duration} onChange={e => setDuration(Number(e.target.value))} />
         <TextField label="Location" type="longitude" style={{paddingTop: 2, paddingBottom: 2}}/>

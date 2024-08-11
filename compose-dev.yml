@@ -5,9 +5,9 @@ services:
       dockerfile: dev.Dockerfile
     command: npm run dev
     ports:
-      - "8090:5173"
+      - "8090:9000"
     expose:
-      - "5173"
+      - "9000"
     develop:
       watch:
         - action: sync

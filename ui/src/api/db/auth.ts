@@ -30,12 +30,10 @@ export async function signUpUser(user: UserSignUp): Promise<UserInfo> {
 export async function loginUser(user: UserLogin) : Promise<UserInfo> {
     const pb = getPocketBaseInstance();
     try {
-        if (pb.authStore.isValid) {
-            const authUser = await pb.collection('users').authWithPassword(user.email, user.password);
-            const userInfo = authUser.record as unknown as UserInfo;
-            if (userInfo !== undefined) {
-                return userInfo;
-            }
+        const authUser = await pb.collection('users').authWithPassword(user.email, user.password);
+        const userInfo = authUser.record as unknown as UserInfo;
+        if (userInfo !== undefined) {
+            return userInfo;
         }
         throw new Error("Invalid credentials");
     } catch (error) {

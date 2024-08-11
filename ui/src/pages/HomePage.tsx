@@ -6,8 +6,8 @@ import ActivityCard from '../components/ActivityCard';
 
 import { List, ListItem } from '@mui/material';
 import LayoutTemplate from './LayoutTemplate';
-// import { getActivities } from '../api/db/activites';
-import { getActivities } from '../api/mock/activities';
+import { getActivities } from "../api/db/activities"
+// import { getActivities } from '../api/mock/activities';
 import { CurrentUserContext } from '../contexts/UserContext';
 
 const HomePage: React.FC = () => {

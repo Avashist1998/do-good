@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-import useTags from './useTags';
 
-const TagField = () => {
-  const { tags, addTag, removeTag } = useTags();
+const TagsField = (props: {tags: string[], addTag: (tag: string) => void, removeTag: (tag: string) => void}) => {
   const [userInput, setUserInput] = useState('');
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -12,8 +10,9 @@ const TagField = () => {
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       e.preventDefault();
-      if (userInput.trim()!== '' && tags.length < 21) {
-        addTag(userInput);
+      if (userInput.trim()!== '' && props.tags.length < 21) {
+        const tagValue = "#" + userInput.replace(/ /g, '-').toUpperCase();
+        props.addTag(tagValue);
         setUserInput('');
       }
     }
@@ -23,15 +22,15 @@ const TagField = () => {
     <div className="flex flex-col w-full">
       <input
         type="text"
-        placeholder={tags.length < 20? 'Add a tag' : `You can only enter max. of 20 tags`}
+        placeholder={props.tags.length < 20? 'Add a tag' : `You can only enter max. of 20 tags`}
         className="w-full border border-gray-300 rounded-md px-4 py-2"
         value={userInput}
         onChange={handleInputChange}
         onKeyDown={handleKeyPress}
-        disabled={tags.length === 20}
+        disabled={props.tags.length === 20}
       />
       <div className="flex flex-wrap gap-3 mt-4">
-        {tags.map((tag: string, index: number) => (
+        {props.tags.map((tag: string, index: number) => (
           <span
             key={`${index}-${tag}`}
             className="inline-flex items-start justify-start px-3 py-2 rounded-[32px] text-sm shadow-sm font-medium bg-green-100 text-green-800 mr-2"
@@ -39,7 +38,7 @@ const TagField = () => {
             {tag}
             <button
               className="ml-2 hover:text-green-500"
-              onClick={() => removeTag(tag)}
+              onClick={() => props.removeTag(tag)}
               title={`Remove ${tag}`}
             >
               &times;
@@ -51,4 +50,4 @@ const TagField = () => {
   );
 };
 
-export default TagField;
+export default TagsField;

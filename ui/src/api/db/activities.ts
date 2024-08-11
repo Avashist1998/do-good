@@ -12,7 +12,13 @@ export async function getActivities(userId: string): Promise<ActivityData[]> {
             sort: "-date"
         });
         for await (const activity of activites.items) { 
+
+            console.log(activity.tags)
+            if (activity.tags === null) {
+                activity.tags = []
+            }
             const activityData = activity as unknown as ActivityData;
+            console.log(activity.tags)
             try {
                 activityData.creator = activity.expand?.creator.username;
                 activityData.activity_id = activity.id
@@ -21,11 +27,6 @@ export async function getActivities(userId: string): Promise<ActivityData[]> {
                     const url = pb.files.getUrl(activity, subURL, {'thumb': '100x250'});
                     activityData.img_url.push(url);
                 });
-                activityData.tags = []
-                if (activity.tags !== null) {
-                    console.log(activity.tags)
-                    activityData.tags = activity.tags.split(",")
-                }
                 res.push(activityData);
             } catch (error) {
                 console.error(error)
@@ -47,6 +48,9 @@ export async function getActivity(activityId: string) {
         const activity = await pb.collection('activities').getOne(activityId, {
             expand: 'creator'
         });
+        if (activity.tags === null) {
+            activity.tags = []
+        }
         const activityData = activity as unknown as ActivityData;
         activityData.activity_id = activity.id
         activityData.creator = activity.expand?.creator.username
@@ -55,10 +59,6 @@ export async function getActivity(activityId: string) {
             const url = pb.files.getUrl(activity, subURL, {'thumb': '100x250'});
             activityData.img_url.push(url);
         });
-        if (activity.tags !== null) {
-            console.log(activity.tags)
-            activityData.tags = activity.tags.split(",")
-        }
         return activityData
     } catch (error) {
         console.log(error)
@@ -79,7 +79,7 @@ export async function addActivity(userId: string, activity: ActivityUploadData) 
             "points": activity.points,
             "duration": activity.duration,
             "type": activity.type,
-            "tags": activity.tags.toString(),
+            "tags": activity.tags,
             "images": activity.images
         };
         console.log(data)
