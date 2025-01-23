@@ -51,3 +51,21 @@ export async function logout() {
         throw new Error('Error logging out');
     }
 }
+
+
+
+export async function signUpAndLoginInWithOAuth(provider: string) {
+    const pb = getPocketBaseInstance();
+    try {
+        console.log("we are here")
+        const authUser = await pb.collection("users").authWithOAuth2({ provider: provider })
+        const userInfo = authUser.record as unknown as UserInfo;
+        if (userInfo !== undefined) {
+            return userInfo;
+        }
+        throw new Error("Invalid credentials");
+    } catch (error) {
+        console.log(error)
+        throw new Error('Invalid credentials');
+    }
+}

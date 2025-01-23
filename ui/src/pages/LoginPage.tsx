@@ -7,7 +7,8 @@ import UserLogin from '../types/userLogin';
 import UserSignUp from '../types/userSignUp';
 import PageTemplate from './PageTemplate';
 import { useNavigate } from 'react-router-dom';
-import { signUpUser, loginUser } from "../api/db/auth";
+import { signUpUser, loginUser, signUpAndLoginInWithOAuth } from "../api/db/auth";
+import { Google as GoogleIcon } from '@mui/icons-material';
 // import { signUpUser, loginUser } from '../api/mock/auth';
 
 
@@ -41,6 +42,20 @@ const LoginPage: React.FC = () => {
             navigate("/");
         }).catch(err => {
             console.log(err);
+            setShowMessage(true)
+            setMessage({text: "Login user failed", error: true} as Message);
+        })
+    }
+
+    const loginWithGoogle = () => {
+        signUpAndLoginInWithOAuth("google").then(res => {
+            console.log("user")
+            console.log(res)
+            sessionStorage.setItem("userData", JSON.stringify(res));
+            setUserData(res);
+            navigate("/");
+        }).catch(err => {
+            console.error(err)
             setShowMessage(true)
             setMessage({text: "Login user failed", error: true} as Message);
         })
@@ -81,9 +96,7 @@ const LoginPage: React.FC = () => {
                         </Button>
                     </div>
                 </div>
-
                 <div className="flex justify-center">
-
                 { showLoginIn ? 
                     <div>
                         <div className="flex justify-center">
@@ -114,6 +127,13 @@ const LoginPage: React.FC = () => {
                         <MessageAlert isError={message.error} msg={message.text}/> 
                     </Suspense> : null
                 }
+                <div className="flex justify-center space-x-4 py-4">
+                    <div className="rouded-lg">
+                        <Button color="primary" variant="contained" startIcon={<GoogleIcon/>} onClick={loginWithGoogle} >
+                            Sign in with Google
+                        </Button>
+                    </div>
+                </div>
                 <div className="flex justify-center z-10">
                     <Icon sx={{ width: '200px', height: '205px' }} >
                         <img src={Logo} className='w-full h-full'/>
